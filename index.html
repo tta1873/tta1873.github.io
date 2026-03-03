@@ -1,6 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cool Website</title>
+    <style>
+        /* CSS ဖြင့် ဒီဇိုင်းပြင်ဆင်ခြင်း */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
 <body>
-    <h1>တိုးတက်အောင်ရယ်ပါ</h1>
+
+    <div class="hero-section">
+        <h1>ကျွန်တော့်ရဲ့ Website မှ ကြိုဆိုပါတယ်</h1>
+        <p>GitHub Pages သုံးပြီး အခမဲ့လွှင့်တင်ထားတဲ့ ကိုယ်ပိုင်စာမျက်နှာလေးဖြစ်ပါတယ်။</p>
+        <a href="#" class="btn">ဆက်လက်လေ့လာရန်</a>
+    </div>
+
 </body>
 </html>
