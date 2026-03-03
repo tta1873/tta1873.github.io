@@ -1,64 +1,101 @@
 <!DOCTYPE html>
-<html lang="my">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Cool Website</title>
+    <title>Modern App Landing Page</title>
     <style>
-        /* CSS ဖြင့် ဒီဇိုင်းပြင်ဆင်ခြင်း */
+        /* အခြေခံ Setting များ */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
-        }
-
-        .hero-section {
-            height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0e14; /* Dark Background */
+            color: #ffffff;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
         }
 
-        .hero-section h1 {
-            font-size: 5rem;
+        .container {
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        /* ခေါင်းစဉ်ပိုင်း */
+        h1 {
+            font-size: 3.5rem;
             margin-bottom: 10px;
+            background: linear-gradient(to right, #ffffff, #888888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .hero-section p {
+        p {
             font-size: 1.2rem;
-            margin-bottom: 25px;
+            color: #a0a0a0;
+            margin-bottom: 40px;
+        }
+
+        /* Download ခလုတ်များ */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .btn {
-            padding: 12px 30px;
-            background-color: #007bff;
-            color: white;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 15px 35px;
+            border-radius: 50px;
             text-decoration: none;
-            border-radius: 25px;
             font-weight: bold;
-            transition: 0.3s;
+            font-size: 1rem;
+            transition: 0.3s ease;
         }
 
         .btn:hover {
-            background-color: #0056b3;
-            transform: scale(1.05);
+            background-color: #e0e0e0;
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background-color: #1f2229;
+            color: #ffffff;
+            border: 1px solid #333;
+        }
+
+        .btn-secondary:hover {
+            background-color: #2d313a;
+        }
+
+        /* App Mockup (ပုံပြသသည့်နေရာ) */
+        .mockup {
+            margin-top: 60px;
+            width: 100%;
+            max-width: 700px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border: 1px solid #333;
         }
     </style>
 </head>
 <body>
 
-    <div class="hero-section">
-        <h1>ကြိုဆိုပါတယ်</h1>
-        <p>GitHub Pages သုံးပြီး အခမဲ့လွှင့်တင်ထားတဲ့ ကိုယ်ပိုင်စာမျက်နှာလေးဖြစ်ပါတယ်။</p>
-        <a href="#" class="btn">ဆက်လက်လေ့လာရန်</a>
+    <div class="container">
+        <h1>Perseus TV Experience</h1>
+        <p>အကောင်းဆုံး ရုပ်သံလိုင်းများကို တစ်နေရာတည်းတွင် ကြည့်ရှုလိုက်ပါ။</p>
+
+        <div class="btn-group">
+            <a href="#" class="btn">Download for Android</a>
+            <a href="#" class="btn btn-secondary">Learn More</a>
+        </div>
+
+        <img src="https://via.placeholder.com/700x400/1f2229/ffffff?text=App+Interface+Mockup" alt="App Screenshot" class="mockup">
     </div>
 
 </body>
