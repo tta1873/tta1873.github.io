@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue Edge - Smart Protocol Layout</title>
+    <title>Blue Edge - Premium Pricing</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Bebas+Neue&display=swap');
 
         body {
             font-family: 'Inter', sans-serif;
@@ -17,20 +17,18 @@
             overflow-x: hidden;
         }
 
-        /* နောက်ခံ Glow Effect */
         .bg-glow {
-            background: radial-gradient(circle at top right, #1e4eb8 0%, #050a18 75%);
+            background: radial-gradient(circle at top right, #1e4eb8 0%, #050a18 80%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
         .container {
-            max-width: 450px;
+            max-width: 480px;
             margin: 0 auto;
             padding: 20px;
             min-height: 100vh;
-            position: relative;
             display: flex;
             flex-direction: column;
         }
@@ -40,178 +38,245 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
-            z-index: 50;
+            margin-bottom: 25px;
         }
 
         .brand {
             font-weight: 900;
-            font-size: 1.3rem; /* နည်းနည်းသေးထားသည် */
-            letter-spacing: 1px;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
         }
 
         .help-btn {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 6px 14px;
-            border-radius: 25px;
-            font-size: 0.75rem; /* စာသား size လျှော့ထားသည် */
+            background: rgba(255, 255, 255, 0.08);
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
             display: flex;
-            flex-direction: row-reverse; /* Icon ကို အရှေ့ရောက်စေရန် */
+            flex-direction: row-reverse;
             align-items: center;
             gap: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #efefef;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .help-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
+        .tg-icon { width: 16px; height: 16px; }
 
-        .tg-icon {
-            width: 18px; /* Icon size */
-            height: 18px;
-            object-fit: contain;
-        }
-
-        /* Main Content */
-        main {
+        /* Hero */
+        .hero {
             position: relative;
-            z-index: 10;
-        }
-
-        .wifi-icon {
-            background: rgba(255, 255, 255, 0.12);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            margin-bottom: 20px;
-            color: #4a90ff;
-        }
-
-        .sub-title {
-            font-weight: 300;
-            font-size: 1.5rem; /* စာသား size လျှော့ထားသည် */
-            margin-bottom: 5px;
-        }
-
-        .main-title-row {
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .main-title {
-            font-size: 3.5rem; /* စာသား size လျှော့ထားသည် */
+            font-size: 3.5rem;
             font-weight: 900;
             color: #4a90ff;
             line-height: 0.9;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-img {
+            position: absolute;
+            right: -25px;
+            top: 110px;
+            width: 280px;
+            z-index: 1;
+        }
+
+        /* Pricing Grid */
+        .pricing-grid {
+            display: flex;
+            gap: 6px;
+            margin-top: auto;
+            padding-bottom: 25px;
+            z-index: 10;
+            align-items: flex-end;
+        }
+
+        .card {
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 15px 10px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .card.featured {
+            background: #1e40af;
+            border-color: #3b82f6;
+            transform: scale(1.06);
+            padding: 20px 12px;
+        }
+
+        .plan-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.45rem;
+            font-weight: bold;
+            color: #94a3b8;
+            margin-bottom: 4px;
             text-transform: uppercase;
         }
 
-        .tag-small {
-            font-size: 1rem; /* စာသား size လျှော့ထားသည် */
-            color: #888;
-            font-weight: 400;
+        .featured .plan-info { color: #bfdbfe; }
+
+        .price-val {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3.2rem;
+            line-height: 0.85;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
         }
 
-        /* စာသားများကို ပုံနှင့် မထပ်အောင် ဘယ်ဘက်တွင် ကန့်သတ်ထားခြင်း */
-        .description {
-            font-size: 0.85rem; /* စာသား size လျှော့ထားသည် */
-            color: #9ca3af;
-            line-height: 1.6;
-            max-width: 65%;
-        }
+        .featured .price-val { font-size: 4.2rem; }
 
-        .description p {
-            margin-bottom: 12px;
-        }
-
-        .thunder-icon {
-            background: rgba(255, 255, 255, 0.1);
-            width: 32px;
-            height: 32px;
+        /* Card Bottom Section */
+        .card-bottom {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            margin-top: 5px;
-            color: #ffd700;
+            justify-content: space-between;
+            align-items: flex-end; /* အောက်ခြေတန်းညှိရန် */
+            margin-top: auto;
         }
 
-        /* သော့ပုံ (Image Container) */
-        .image-container {
-            position: absolute;
-            right: -45px;
-            top: 260px;
-            z-index: 1;
-            pointer-events: none;
+        .features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.4rem;
+            color: #94a3b8;
+            line-height: 1.8;
         }
 
-        .lock-img {
-            width: 300px;
-            height: auto;
-            filter: drop-shadow(0 15px 40px rgba(30, 78, 184, 0.4));
-            animation: float 4s ease-in-out infinite;
+        .featured .features { color: #dbeafe; }
+
+        .features li::before {
+            content: "•";
+            margin-right: 4px;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(-4deg); }
-            50% { transform: translateY(-15px) rotate(2deg); }
+        /* Data Number & GB Styling (As per screenshot) */
+        .data-container {
+            display: flex;
+            align-items: flex-end;
+            line-height: 0.8;
         }
 
-        /* Mobile Screen Adjustments */
-        @media (max-width: 380px) {
-            .main-title { font-size: 3rem; }
-            .image-container { top: 300px; right: -60px; }
-            .lock-img { width: 250px; }
-            .description { max-width: 60%; }
+        .data-num {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .featured .data-num { font-size: 2.8rem; }
+
+        .gb-label {
+            font-size: 0.5rem;
+            font-weight: bold;
+            margin-left: 2px;
+            padding-bottom: 2px;
+            color: #94a3b8;
+        }
+
+        .featured .gb-label { color: #dbeafe; }
+
+        @media (max-width: 360px) {
+            .price-val { font-size: 2.8rem; }
+            .featured .price-val { font-size: 3.5rem; }
+            .data-num { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body class="bg-glow">
 
     <div class="container">
-        <!-- Header အပိုင်း -->
         <header>
             <div class="brand">BLUE EDGE</div>
-            <div class="help-btn" onclick="window.location.href='https://t.me/yourusername'">
-                <span>အကူအညီရယူရန်</span>
-                <!-- Telegram Icon Image အသစ် (စာသားအရှေ့ရောက်ရန် Flex direction သုံးထားသည်) -->
+            <div class="help-btn">
                 <img src="https://raw.githubusercontent.com/tta1873/tta1873.github.io/refs/heads/main/icons8-telegram-96.png" alt="TG" class="tg-icon">
+                <span>အကူအညီရယူရန်</span>
             </div>
         </header>
 
-        <!-- Main Content အပိုင်း -->
-        <main>
-            <div class="wifi-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+        <div class="hero">
+            <div class="text-blue-400 mb-2">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+            </div>
+            <div class="text-2xl font-light">တစ်နေရာတည်းမှာ</div>
+            <h1 class="main-title">PROTOCOL <span class="text-base text-gray-500 font-normal">အကုန်ရ</span></h1>
+            
+            <p class="text-sm text-gray-400 mt-6 max-w-[65%] leading-relaxed">
+                Hysteria 2 နှင့် Vless (Reality) တို့ကို Plan တိုင်းမှာ စိတ်ကြိုက်ပြောင်းလဲအသုံးပြုနိုင်ပါတယ်။
+            </p>
+
+            <img src="20260304_084442.png" alt="Lock" class="hero-img">
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Basic Plan -->
+            <div class="card">
+                <div class="plan-info">
+                    <span>Basic Plan</span>
+                    <span>Monthly</span>
+                </div>
+                <div class="price-val">1500</div>
+                <div class="card-bottom">
+                    <ul class="features">
+                        <li>2 Protocols Supported</li>
+                        <li>Unlimited Devices</li>
+                        <li>Backup Key Included</li>
+                        <li>No Speed Limit</li>
+                    </ul>
+                    <div class="data-container">
+                        <div class="data-num">30</div>
+                        <div class="gb-label">GB</div>
+                    </div>
+                </div>
             </div>
 
-            <div class="sub-title">တစ်ခုတည်းမှာ</div>
-            <div class="main-title-row">
-                <h1 class="main-title">PROTOCOL</h1>
-                <span class="tag-small">အကုန်ရ</span>
+            <!-- Standard Plan -->
+            <div class="card featured">
+                <div class="plan-info">
+                    <span>Standard Plan</span>
+                    <span>Monthly</span>
+                </div>
+                <div class="price-val">4500</div>
+                <div class="card-bottom">
+                    <ul class="features">
+                        <li>2 Protocols Supported</li>
+                        <li>Unlimited Devices</li>
+                        <li>Backup Key Included</li>
+                        <li>No Speed Limit</li>
+                    </ul>
+                    <div class="data-container">
+                        <div class="data-num">120</div>
+                        <div class="gb-label">GB</div>
+                    </div>
+                </div>
             </div>
 
-            <div class="description">
-                <p>Hysteria 2 နှင့် Vless (Reality) တို့ကို Plan တိုင်းမှာ စိတ်ကြိုက်ပြောင်းလဲအသုံးပြုနိုင်ပါတယ်။</p>
-                <p>Device Limit မရှိတဲ့အပြင် Backup Key ပါဝင်ပြီးသားဖြစ်လို့ စိတ်ချလက်ချ အသုံးပြုနိုင်ပါပြီ။</p>
+            <!-- Ultra Plan -->
+            <div class="card">
+                <div class="plan-info">
+                    <span>Ultra Plan</span>
+                    <span>Monthly</span>
+                </div>
+                <div class="price-val">9000</div>
+                <div class="card-bottom">
+                    <ul class="features">
+                        <li>2 Protocols Supported</li>
+                        <li>Unlimited Devices</li>
+                        <li>Backup Key Included</li>
+                        <li>No Speed Limit</li>
+                    </ul>
+                    <div class="data-container">
+                        <div class="data-num">300</div>
+                        <div class="gb-label">GB</div>
+                    </div>
+                </div>
             </div>
-
-            <div class="thunder-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9v8l10-12h-9l1 0z"></path></svg>
-            </div>
-        </main>
-
-        <!-- သော့ပုံ (ညာဘက်ခြမ်းတွင် နေရာချခြင်း) -->
-        <div class="image-container">
-            <img src="20260304_084442.png" alt="3D Lock" class="lock-img">
         </div>
     </div>
 
