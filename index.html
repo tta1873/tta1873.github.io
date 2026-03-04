@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue Edge - Official Premium Layout</title>
+    <title>Blue Edge - Liquid Glass Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @font-face {
@@ -17,350 +17,322 @@
         }
 
         :root {
-            --bg-dark: #050a18;
-            --accent-blue: #2563eb;
-            --card-dark: #0f172a;
-            --text-gray: #94a3b8;
+            --bg-dark: #020617;
+            --accent-blue: #3b82f6;
+            --glass-blue: rgba(59, 130, 246, 0.2);
         }
 
         body, html {
             margin: 0;
             padding: 0;
+            height: 100%;
+            font-family: 'MyanmarSagar', sans-serif;
             background-color: var(--bg-dark);
             color: white;
-            font-family: 'MyanmarSagar', sans-serif;
-            overflow-x: hidden;
             scroll-behavior: smooth;
+            overflow: hidden; /* JavaScript will handle scroll when needed */
         }
 
         .std-font { font-family: ui-sans-serif, system-ui, sans-serif !important; }
-        .num-font { font-family: 'Heathergreen', sans-serif !important; }
 
-        /* Header Styles */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            position: fixed;
-            top: 0;
+        .page {
+            height: 100vh;
             width: 100%;
-            z-index: 100;
-        }
-
-        .brand { font-weight: 800; font-size: 1.4rem; letter-spacing: 0.5px; }
-        
-        .help-btn {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 8px 16px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.8rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 100px 24px 40px 24px;
-            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.2) 0%, transparent 50%);
-            min-height: 80vh;
-            position: relative;
-        }
-
-        .wifi-icon {
-            width: 45px;
-            height: 45px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-            color: #3b82f6;
-        }
-
-        .hero-sub { font-size: 1.5rem; font-weight: 300; color: #cbd5e1; }
-        
-        @keyframes protocolFlash {
-            0% { transform: scale(0.9); opacity: 0; filter: brightness(3) blur(10px); }
-            100% { transform: scale(1); opacity: 1; filter: brightness(1) blur(0px); }
-        }
-
-        .hero-main {
-            font-size: 4rem;
-            font-weight: 900;
-            color: #3b82f6;
-            line-height: 1;
-            margin: 10px 0;
-            letter-spacing: -1px;
-            animation: protocolFlash 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-        }
-
-        .hero-desc {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            max-width: 90%;
-            margin-top: 20px;
-        }
-
-        /* Lightning Bolt Animation */
-        .bolt-container {
-            position: absolute;
-            right: 0px;
-            top: 25%;
-            width: 180px;
-            opacity: 0.4;
-            filter: drop-shadow(0 0 30px #2563eb);
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-
-        /* Pricing Section */
-        .pricing-section {
-            padding-bottom: 60px;
-        }
-
-        .card-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end; /* Card တွေကို အောက်ခြေကပ်ထားမယ် */
-            gap: 15px;
-            padding: 20px;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-        .card-container::-webkit-scrollbar { display: none; }
-
-        /* Card Base Styles */
-        .card {
-            min-width: 200px;
-            background: #0f172a;
-            border-radius: 24px;
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             flex-direction: column;
             position: relative;
-            transition: transform 0.3s ease;
+            flex-shrink: 0;
         }
 
-        /* Putter Side Cards (30px less) */
-        .card.side {
-            height: 340px;
-            opacity: 0.7;
-        }
-
-        /* Featured Middle Card (Tall) */
-        .card.featured {
-            height: 420px;
-            background: linear-gradient(180deg, #1e40af 0%, #1e3a8a 100%);
-            border: none;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            z-index: 10;
-            opacity: 1;
-        }
-
-        .card-header {
+        /* Header Style */
+        header {
+            position: absolute;
+            top: 0;
+            width: 100%;
             display: flex;
             justify-content: space-between;
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: rgba(255, 255, 255, 0.6);
+            align-items: center;
+            padding: 24px;
+            z-index: 50;
         }
 
-        .card.featured .card-header { color: white; }
+        .brand { font-weight: 900; font-size: 1.3rem; letter-spacing: 1px; color: #f8fafc; }
 
-        /* Centered Price */
-        .price-box {
+        .help-btn {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+        }
+
+        /* Liquid Glass Text Style */
+        .liquid-glass {
+            font-family: ui-sans-serif, system-ui, sans-serif !important;
+            font-size: 5rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.1);
+            position: relative;
+            background: linear-gradient(to bottom, #3b82f6, #1e40af, #3b82f6);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: liquid-move 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.4));
+            line-height: 1;
+        }
+
+        @keyframes liquid-move {
+            0%, 100% { background-position: 0% 50%; filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.3)); }
+            50% { background-position: 100% 50%; filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.6)); }
+        }
+
+        .hero-content {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
+            padding: 24px;
+            z-index: 10;
         }
 
-        .price-text {
-            font-family: 'Heathergreen', sans-serif;
-            font-size: 7.5rem;
-            line-height: 0.8;
-            color: white;
+        .gateway-tag {
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 300;
         }
 
-        .ks-label {
-            align-self: flex-start;
-            font-size: 0.8rem;
-            font-weight: 900;
-            margin-top: -10px;
-            color: rgba(255,255,255,0.5);
+        .hero-desc {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            max-width: 85%;
+            line-height: 1.8;
+            margin-top: 25px;
         }
 
-        /* Footer Details */
-        .card-footer {
+        /* Navigation Arrow */
+        .nav-arrow {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            cursor: pointer;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-arrow.up { transform: translateX(-50%) rotate(180deg); }
+
+        .arrow-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
             display: flex;
-            justify-content: space-between;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Locker Animation Refined */
+        .locker-container {
+            position: absolute;
+            bottom: 60px;
+            right: -20px;
+            width: 260px;
+            z-index: 1;
+        }
+        .locker-img {
+            width: 100%;
+            animation: locker-blur-breathe 6s ease-in-out infinite;
+        }
+
+        @keyframes locker-blur-breathe {
+            0%, 100% { opacity: 0.2; filter: blur(8px); transform: scale(0.9); }
+            50% { opacity: 0.7; filter: blur(0px); transform: scale(1); }
+        }
+
+        /* Page 2 Layout */
+        #page2 {
+            background: #020617;
+            justify-content: flex-start;
+            padding-top: 60px;
+        }
+
+        .card-slider {
+            display: flex;
+            overflow-x: auto;
+            padding: 40px;
+            gap: 20px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
             align-items: flex-end;
-            margin-top: 10px;
+        }
+        .card-slider::-webkit-scrollbar { display: none; }
+
+        .card {
+            min-width: 220px;
+            height: 350px;
+            background: #0f172a;
+            border-radius: 24px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            scroll-snap-align: center;
         }
 
-        .features {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            font-size: 0.55rem;
-            color: rgba(255, 255, 255, 0.5);
-            line-height: 1.6;
+        .card.featured {
+            height: 420px;
+            background: linear-gradient(180deg, #1e40af 0%, #1e3a8a 100%);
+            border: 2px solid var(--accent-blue);
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.2);
         }
-        .features li::before { content: "• "; margin-right: 4px; }
 
-        .gb-wrap { display: flex; align-items: baseline; }
-        .gb-val { font-family: 'Heathergreen', sans-serif; font-size: 3.5rem; line-height: 0.8; }
-        .gb-unit { font-size: 0.6rem; font-weight: 900; margin-left: 3px; color: rgba(255,255,255,0.4); }
+        .price-center { flex-grow: 1; display: flex; justify-content: center; align-items: center; }
+        .price-text { font-family: 'Heathergreen', sans-serif; font-size: 7.5rem; color: white; line-height: 1; }
 
-        /* Purchase Button */
-        .btn-container { padding: 0 24px 40px 24px; }
+        .buy-btn-area { padding: 0 40px 40px 40px; }
         .buy-btn {
             width: 100%;
             background: var(--accent-blue);
             padding: 18px;
             border-radius: 20px;
-            font-weight: 800;
-            font-size: 1rem;
-            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+            font-weight: 900;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
         }
-        .buy-btn:active { transform: scale(0.97); }
-
-        .secure-badge {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.5rem;
-            color: #475569;
-            margin-top: 15px;
-            letter-spacing: 0.5px;
-            font-weight: 800;
-        }
-        .dot { width: 5px; height: 5px; background: #10b981; border-radius: 50%; box-shadow: 0 0 8px #10b981; }
 
     </style>
 </head>
-<body>
+<body id="mainBody">
 
-    <header>
-        <div class="brand std-font">BLUE EDGE</div>
-        <div class="help-btn std-font">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-            <span>အကူအညီရယူရန်</span>
+    <!-- Page 1 -->
+    <section id="page1" class="page">
+        <header>
+            <div class="brand std-font">BLUE EDGE</div>
+            <div class="help-btn std-font">
+                <img src="https://raw.githubusercontent.com/tta1873/tta1873.github.io/refs/heads/main/icons8-telegram-96.png" width="16" alt="TG">
+                <span>အကူအညီရယူရန်</span>
+            </div>
+        </header>
+
+        <div class="hero-content">
+            <div class="gateway-tag std-font">Your Ultimate Gateway</div>
+            <h1 class="liquid-glass">PROTOCOL</h1>
+            
+            <p class="hero-desc">
+                Hysteria 2 နှင့် Vless (Reality) တို့ကို Plan တိုင်းမှာ စိတ်ကြိုက်ပြောင်းလဲသုံးနိုင်ပါတယ်။ Device Limit မရှိတဲ့အပြင် Backup Key ပါဝင်ပြီးသားဖြစ်လို့ စိတ်ချလက်ချ အသုံးပြုနိုင်ပါပြီ။
+            </p>
         </div>
-    </header>
 
-    <section class="hero">
-        <div class="wifi-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.59 16.11a6 6 0 0 1 6.82 0M12 20h.01"/></svg>
-        </div>
-        
-        <div class="hero-sub">တစ်နေရာတည်းမှာ</div>
-        <h1 class="hero-main std-font">PROTOCOL <span class="text-white/20 text-xl font-normal">အကုန်ရ</span></h1>
-        
-        <p class="hero-desc">
-            Hysteria 2 နှင့် Vless (Reality) တို့ကို Plan တိုင်းမှာ စိတ်ကြိုက်ပြောင်းလဲသုံးနိုင်ပါတယ်။ Device Limit မရှိတဲ့အပြင် Backup Key ပါဝင်ပြီးသားဖြစ်လို့ စိတ်ချလက်ချ အသုံးပြုနိုင်ပါပြီ။
-        </p>
-
-        <div class="bolt-container">
-            <svg viewBox="0 0 24 24" fill="#3b82f6"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <div class="locker-container">
+            <img src="20260304_084442.png" alt="Secure" class="locker-img">
         </div>
     </section>
 
-    <section class="pricing-section">
-        <div class="card-container">
-            <!-- Basic Plan -->
-            <div class="card side">
-                <div class="card-header std-font"><span>Basic Plan</span><span>Monthly</span></div>
-                <div class="price-box">
-                    <div class="price-val price-text">1500</div>
-                    <div class="ks-label std-font">KS</div>
-                </div>
-                <div class="card-footer">
-                    <ul class="features std-font">
-                        <li>2 Protocols Supported</li>
-                        <li>Unlimited Devices</li>
-                        <li>Backup Key Included</li>
-                        <li>No Speed Limit</li>
-                    </ul>
-                    <div class="gb-wrap"><span class="gb-val">30</span><span class="gb-unit std-font">GB</span></div>
+    <!-- Page 2 -->
+    <section id="page2" class="page">
+        <div class="mt-12 text-center">
+            <h2 class="std-font text-xs font-bold text-slate-600 tracking-[0.3em] uppercase">Premium Subscriptions</h2>
+        </div>
+
+        <div class="card-slider" id="cardSlider">
+            <!-- Basic -->
+            <div class="card">
+                <div class="flex justify-between text-[0.6rem] text-blue-400 font-bold std-font"><span>BASIC</span><span>MO</span></div>
+                <div class="price-center"><div class="price-text">1500</div></div>
+                <div class="mt-auto flex justify-between items-baseline">
+                   <div class="text-[0.5rem] text-slate-500 leading-relaxed">• 2 Protocols<br>• Unlimited Dev<br>• Backup Key</div>
+                   <div class="flex items-baseline"><span class="num-font text-4xl">30</span><span class="text-[0.6rem] ml-1 font-black text-slate-700">GB</span></div>
                 </div>
             </div>
-
-            <!-- Standard Plan (Active/Featured) -->
+            <!-- Featured -->
             <div class="card featured">
-                <div class="card-header std-font"><span>Standard Plan</span><span>Monthly</span></div>
-                <div class="price-box">
-                    <div class="price-val price-text">4500</div>
-                    <div class="ks-label std-font" style="color: white; opacity: 0.6;">KS</div>
-                </div>
-                <div class="card-footer">
-                    <ul class="features std-font" style="color: white; opacity: 0.7;">
-                        <li>2 Protocols Supported</li>
-                        <li>Unlimited Devices</li>
-                        <li>Backup Key Included</li>
-                        <li>No Speed Limit</li>
-                    </ul>
-                    <div class="gb-wrap"><span class="gb-val">120</span><span class="gb-unit std-font" style="color: white; opacity: 0.6;">GB</span></div>
+                <div class="flex justify-between text-[0.6rem] text-white font-bold std-font"><span>STANDARD</span><span>POPULAR</span></div>
+                <div class="price-center"><div class="price-text">4500</div></div>
+                <div class="mt-auto flex justify-between items-baseline">
+                   <div class="text-[0.5rem] text-blue-200 leading-relaxed">• 2 Protocols<br>• Unlimited Dev<br>• Backup Key</div>
+                   <div class="flex items-baseline"><span class="num-font text-5xl">120</span><span class="text-[0.6rem] ml-1 font-black text-blue-300">GB</span></div>
                 </div>
             </div>
-
-            <!-- Ultra Plan -->
-            <div class="card side">
-                <div class="card-header std-font"><span>Ultra Plan</span><span>Monthly</span></div>
-                <div class="price-box">
-                    <div class="price-val price-text">9000</div>
-                    <div class="ks-label std-font">KS</div>
-                </div>
-                <div class="card-footer">
-                    <ul class="features std-font">
-                        <li>2 Protocols Supported</li>
-                        <li>Unlimited Devices</li>
-                        <li>Backup Key Included</li>
-                        <li>No Speed Limit</li>
-                    </ul>
-                    <div class="gb-wrap"><span class="gb-val">300</span><span class="gb-unit std-font">GB</span></div>
+            <!-- Ultra -->
+            <div class="card">
+                <div class="flex justify-between text-[0.6rem] text-blue-400 font-bold std-font"><span>ULTRA</span><span>MO</span></div>
+                <div class="price-center"><div class="price-text">9000</div></div>
+                <div class="mt-auto flex justify-between items-baseline">
+                   <div class="text-[0.5rem] text-slate-500 leading-relaxed">• 2 Protocols<br>• Unlimited Dev<br>• Backup Key</div>
+                   <div class="flex items-baseline"><span class="num-font text-4xl">300</span><span class="text-[0.6rem] ml-1 font-black text-slate-700">GB</span></div>
                 </div>
             </div>
         </div>
 
-        <div class="flex justify-center mt-6">
-            <div class="secure-badge std-font"><div class="dot"></div>SECURE TUNNEL ACTIVE</div>
+        <div class="buy-btn-area">
+            <button class="buy-btn std-font">အခုပဲ ဝယ်ယူအသုံးပြုမည်</button>
         </div>
     </section>
 
-    <div class="btn-container">
-        <button class="buy-btn std-font">
-            <span>ဝယ်ယူအသုံးပြုမည်</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
+    <!-- Global Navigation Arrow -->
+    <div class="nav-arrow" id="navArrow">
+        <div class="arrow-circle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+        </div>
     </div>
 
     <script>
-        // Auto-scroll to middle card on load
+        const arrow = document.getElementById('navArrow');
+        const page2 = document.getElementById('page2');
+        const page1 = document.getElementById('page1');
+        const slider = document.getElementById('cardSlider');
+        let isAtBottom = false;
+
+        arrow.addEventListener('click', () => {
+            if (!isAtBottom) {
+                // Scroll to Page 2
+                page2.scrollIntoView({ behavior: 'smooth' });
+                arrow.classList.add('up');
+                isAtBottom = true;
+            } else {
+                // Scroll to Page 1
+                page1.scrollIntoView({ behavior: 'smooth' });
+                arrow.classList.remove('up');
+                isAtBottom = false;
+            }
+        });
+
+        // Initialize slider position to center card
         window.onload = () => {
-            const container = document.querySelector('.card-container');
-            const featured = document.querySelector('.card.featured');
-            const scrollPos = featured.offsetLeft - (window.innerWidth / 2) + (featured.offsetWidth / 2);
-            container.scrollLeft = scrollPos;
-        }
+            const cards = slider.querySelectorAll('.card');
+            const centerPos = cards[1].offsetLeft - (window.innerWidth / 2) + (cards[1].offsetWidth / 2);
+            slider.scrollLeft = centerPos;
+        };
+
+        // Detect manual scrolling to update arrow state
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY;
+            if (scrollPos > window.innerHeight / 2) {
+                arrow.classList.add('up');
+                isAtBottom = true;
+            } else {
+                arrow.classList.remove('up');
+                isAtBottom = false;
+            }
+        }, { passive: true });
     </script>
 </body>
 </html>
