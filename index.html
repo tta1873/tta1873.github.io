@@ -46,20 +46,33 @@
 
         .brand {
             font-weight: 900;
-            font-size: 1.5rem;
+            font-size: 1.3rem; /* နည်းနည်းသေးထားသည် */
             letter-spacing: 1px;
         }
 
         .help-btn {
             background: rgba(255, 255, 255, 0.1);
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 25px;
-            font-size: 0.85rem;
+            font-size: 0.75rem; /* စာသား size လျှော့ထားသည် */
             display: flex;
+            flex-direction: row-reverse; /* Icon ကို အရှေ့ရောက်စေရန် */
             align-items: center;
             gap: 8px;
             border: 1px solid rgba(255, 255, 255, 0.15);
             color: #efefef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .help-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .tg-icon {
+            width: 18px; /* Icon size */
+            height: 18px;
+            object-fit: contain;
         }
 
         /* Main Content */
@@ -70,8 +83,8 @@
 
         .wifi-icon {
             background: rgba(255, 255, 255, 0.12);
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -82,19 +95,19 @@
 
         .sub-title {
             font-weight: 300;
-            font-size: 1.8rem;
+            font-size: 1.5rem; /* စာသား size လျှော့ထားသည် */
             margin-bottom: 5px;
         }
 
         .main-title-row {
             display: flex;
             align-items: baseline;
-            gap: 12px;
-            margin-bottom: 25px;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
         .main-title {
-            font-size: 4rem;
+            font-size: 3.5rem; /* စာသား size လျှော့ထားသည် */
             font-weight: 900;
             color: #4a90ff;
             line-height: 0.9;
@@ -102,32 +115,32 @@
         }
 
         .tag-small {
-            font-size: 1.2rem;
+            font-size: 1rem; /* စာသား size လျှော့ထားသည် */
             color: #888;
             font-weight: 400;
         }
 
         /* စာသားများကို ပုံနှင့် မထပ်အောင် ဘယ်ဘက်တွင် ကန့်သတ်ထားခြင်း */
         .description {
-            font-size: 0.95rem;
+            font-size: 0.85rem; /* စာသား size လျှော့ထားသည် */
             color: #9ca3af;
-            line-height: 1.7;
-            max-width: 65%; /* စာသား ဧရိယာကို ၆၅ ရာခိုင်နှုန်းပဲ ပေးထားသည် */
+            line-height: 1.6;
+            max-width: 65%;
         }
 
         .description p {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .thunder-icon {
             background: rgba(255, 255, 255, 0.1);
-            width: 35px;
-            height: 35px;
+            width: 32px;
+            height: 32px;
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 50%;
-            margin-top: 10px;
+            margin-top: 5px;
             color: #ffd700;
         }
 
@@ -135,13 +148,13 @@
         .image-container {
             position: absolute;
             right: -45px;
-            top: 280px; /* စာသားနှင့် တစ်တန်းတည်း ဖြစ်စေရန် အမြင့်ညှိထားသည် */
+            top: 260px;
             z-index: 1;
             pointer-events: none;
         }
 
         .lock-img {
-            width: 310px;
+            width: 300px;
             height: auto;
             filter: drop-shadow(0 15px 40px rgba(30, 78, 184, 0.4));
             animation: float 4s ease-in-out infinite;
@@ -154,9 +167,9 @@
 
         /* Mobile Screen Adjustments */
         @media (max-width: 380px) {
-            .main-title { font-size: 3.2rem; }
-            .image-container { top: 320px; right: -60px; }
-            .lock-img { width: 260px; }
+            .main-title { font-size: 3rem; }
+            .image-container { top: 300px; right: -60px; }
+            .lock-img { width: 250px; }
             .description { max-width: 60%; }
         }
     </style>
@@ -167,20 +180,20 @@
         <!-- Header အပိုင်း -->
         <header>
             <div class="brand">BLUE EDGE</div>
-            <div class="help-btn">
+            <div class="help-btn" onclick="window.location.href='https://t.me/yourusername'">
                 <span>အကူအညီရယူရန်</span>
-                <!-- Telegram Icon Image အစားထိုးနိုင်သည် -->
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                <!-- Telegram Icon Image အသစ် (စာသားအရှေ့ရောက်ရန် Flex direction သုံးထားသည်) -->
+                <img src="https://raw.githubusercontent.com/tta1873/tta1873.github.io/refs/heads/main/icons8-telegram-96.png" alt="TG" class="tg-icon">
             </div>
         </header>
 
         <!-- Main Content အပိုင်း -->
         <main>
             <div class="wifi-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
             </div>
 
-            <div class="sub-title">တစ်နေရာတည်းမှာ</div>
+            <div class="sub-title">တစ်ခုတည်းမှာ</div>
             <div class="main-title-row">
                 <h1 class="main-title">PROTOCOL</h1>
                 <span class="tag-small">အကုန်ရ</span>
@@ -192,13 +205,12 @@
             </div>
 
             <div class="thunder-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9v8l10-12h-9l1 0z"></path></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9v8l10-12h-9l1 0z"></path></svg>
             </div>
         </main>
 
         <!-- သော့ပုံ (ညာဘက်ခြမ်းတွင် နေရာချခြင်း) -->
         <div class="image-container">
-            <!-- သင်တင်ထားသော 20260304_084442.png သို့မဟုတ် သက်ဆိုင်ရာ ပုံအမည်ကို အသုံးပြုပါ -->
             <img src="20260304_084442.png" alt="3D Lock" class="lock-img">
         </div>
     </div>
