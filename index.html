@@ -3,49 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue Edge - Enhanced VPN UI</title>
+    <title>Blue Edge - Animated Premium UI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Bebas+Neue&display=swap');
+        @font-face {
+            font-family: 'MyanmarSagar';
+            src: url('https://raw.githubusercontent.com/tta1873/tta1873.github.io/e3eaa3afa28bfe51e8f8f638201b05e2f1a4120c/MyanmarSagar.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Heathergreen';
+            src: url('https://raw.githubusercontent.com/tta1873/tta1873.github.io/e3eaa3afa28bfe51e8f8f638201b05e2f1a4120c/Heathergreen.otf') format('opentype');
+        }
 
         :root {
-            --primary-blue: #4a90ff;
-            --bg-dark: #050a18;
+            --bg-dark: #020617;
             --card-bg: #0f172a;
+            --accent-blue: #3b82f6;
+            --text-dim: #94a3b8;
         }
 
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
-            font-family: 'Inter', sans-serif;
+            font-family: 'MyanmarSagar', sans-serif;
             background-color: var(--bg-dark);
             color: white;
             scroll-behavior: smooth;
             overflow-x: hidden;
         }
 
-        /* Full Page Layout */
+        .std-font { font-family: ui-sans-serif, system-ui, sans-serif !important; }
+        .number-font { font-family: 'Heathergreen', sans-serif !important; }
+
         .page {
             height: 100vh;
-            width: 100%;
             display: flex;
             flex-direction: column;
             position: relative;
-            overflow: hidden;
         }
 
-        /* Page 1 - Hero Section */
+        /* PROTOCOL Animation - Flash & Slide */
+        @keyframes protocolEntry {
+            0% { transform: scale(0.8) translateY(20px); opacity: 0; filter: blur(10px) brightness(2); }
+            70% { transform: scale(1.05); opacity: 1; filter: blur(0px) brightness(1.5); }
+            100% { transform: scale(1) translateY(0); opacity: 1; filter: brightness(1); }
+        }
+
+        .animate-protocol {
+            display: inline-block;
+            animation: protocolEntry 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            color: #3b82f6;
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Hero Page */
         #page1 {
-            background: radial-gradient(circle at top right, #1e4eb8 0%, #050a18 85%);
-            padding: 20px;
+            background: radial-gradient(circle at 50% -20%, #1e3a8a 0%, #020617 80%);
+            padding: 24px;
         }
 
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 5px;
         }
 
         .brand { font-weight: 900; font-size: 1.3rem; letter-spacing: 1px; }
@@ -62,103 +84,74 @@
             backdrop-filter: blur(5px);
         }
 
-        .hero-content {
-            margin-top: 50px;
-            z-index: 2;
-            position: relative;
-        }
+        .hero-content { margin-top: 50px; z-index: 10; }
+        .hero-title { font-size: 3.8rem; font-weight: 900; line-height: 0.9; margin: 15px 0; }
+        .hero-desc { font-size: 0.85rem; color: var(--text-dim); max-width: 85%; line-height: 1.7; }
 
-        .hero-title {
-            font-size: 3.8rem;
-            font-weight: 900;
-            color: var(--primary-blue);
-            line-height: 0.85;
-            margin: 15px 0;
-            text-shadow: 0 0 30px rgba(74, 144, 255, 0.3);
-        }
-
-        .hero-desc {
-            font-size: 0.85rem;
-            color: #94a3b8;
-            line-height: 1.7;
-            max-width: 80%;
-        }
-
-        .hero-img {
+        /* Locker Breathing Animation */
+        .locker-box {
             position: absolute;
-            bottom: 50px;
-            right: -30px;
-            width: 280px;
+            bottom: 40px;
+            right: -15px;
+            width: 250px;
             z-index: 1;
-            filter: drop-shadow(0 20px 50px rgba(0,0,0,0.5));
-            animation: float 4s ease-in-out infinite;
+        }
+        .locker-img {
+            width: 100%;
+            animation: locker-breathe 5s ease-in-out infinite;
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+        @keyframes locker-breathe {
+            0%, 100% { opacity: 0.3; filter: blur(4px); transform: scale(0.92); }
+            50% { opacity: 0.9; filter: blur(0px); transform: scale(1); }
         }
 
-        /* Page 2 - Pricing Cards Section */
-        #page2 {
-            background-color: var(--bg-dark);
-            justify-content: center;
-            padding-top: 30px;
-        }
+        /* Page 2 - Card Layout Updates */
+        #page2 { justify-content: center; }
 
-        .pricing-wrapper {
+        .pricing-container {
             display: flex;
             overflow-x: auto;
-            padding: 30px 50px 50px 50px;
-            gap: 30px;
+            padding: 30px 40px;
+            gap: 20px;
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
+            align-items: center; /* ဝင်ရိုးဗဟိုညှိ */
         }
-        .pricing-wrapper::-webkit-scrollbar { display: none; }
+        .pricing-container::-webkit-scrollbar { display: none; }
 
-        /* Card Effect & Design */
+        /* Card Base */
         .card {
-            min-width: 250px;
-            height: 400px;
+            min-width: 230px;
+            height: 380px; /* ဘေးကတ်တွေအတွက် အရွယ်အစား (ပုထားသည်) */
             background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.1);
             border-radius: 28px;
-            padding: 22px;
-            scroll-snap-align: center;
+            padding: 24px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            scroll-snap-align: center;
             position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        /* Card Hover Effect */
-        .card:hover {
-            border-color: rgba(74, 144, 255, 0.4);
-            box-shadow: 0 0 40px rgba(74, 144, 255, 0.15);
-        }
-
+        /* Middle Card (Featured) - 30px ခန့် ပိုရှည်သည် */
         .card.featured {
-            background: linear-gradient(165deg, #1e40af 0%, #050a18 100%);
-            border: 1px solid rgba(59, 130, 246, 0.5);
-            transform: scale(1.06);
-            box-shadow: 0 20px 50px rgba(30, 64, 175, 0.4);
+            height: 410px; 
+            border: 1.5px solid var(--accent-blue);
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.2);
+            z-index: 5;
         }
 
-        .card-header {
+        .card-label {
             display: flex;
             justify-content: space-between;
-            font-size: 0.6rem;
+            font-size: 0.65rem;
+            color: var(--accent-blue);
             font-weight: 800;
-            color: #475569;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
-        .featured .card-header { color: #93c5fd; }
 
-        /* Price Center */
         .price-center {
             flex-grow: 1;
             display: flex;
@@ -166,210 +159,197 @@
             justify-content: center;
         }
         .price-val {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 5.5rem;
-            line-height: 1;
+            font-family: 'Heathergreen', sans-serif;
+            font-size: 8rem;
             color: white;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            line-height: 1;
         }
-        .featured .price-val { font-size: 6.5rem; }
 
-        /* Status UI Decor */
-        .status-decor {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: 15px 0;
-            opacity: 0.7;
-        }
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            background: #10b981;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #10b981;
-        }
-        .status-text { font-size: 0.55rem; font-weight: 700; color: #64748b; }
-        .featured .status-text { color: #93c5fd; }
-
-        /* Footer Alignment (Features + Data) */
         .card-footer {
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 15px;
+        }
+
+        .details-row {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end; /* အောက်ခြေတန်းညှိ */
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            align-items: flex-end;
         }
 
         .feature-list {
             list-style: none;
             padding: 0;
             margin: 0;
-            font-size: 0.52rem;
-            color: rgba(148, 163, 184, 0.5);
+            font-size: 0.55rem;
+            color: #64748b;
             line-height: 1.6;
         }
-        .featured .feature-list { color: rgba(191, 219, 254, 0.7); }
-        .feature-list li::before {
-            content: "•";
-            margin-right: 5px;
-            color: var(--primary-blue);
-        }
+        .feature-list li::before { content: "• "; color: var(--accent-blue); }
 
-        .data-info {
+        .data-wrap { display: flex; align-items: baseline; }
+        .data-val { font-family: 'Heathergreen', sans-serif; font-size: 3.5rem; color: white; }
+        .data-unit { font-size: 0.7rem; font-weight: 900; color: #475569; margin-left: 2px; }
+
+        .secure-tag {
             display: flex;
-            align-items: flex-end;
-            line-height: 0.75;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.5rem;
+            font-weight: 800;
+            color: #334155;
+            margin-top: 10px;
         }
-        .data-num {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 3.5rem;
-            color: white;
-        }
-        .gb-unit {
-            font-size: 0.65rem;
-            font-weight: 900;
-            color: #475569;
-            margin-left: 2px;
-            padding-bottom: 7px;
-        }
-        .featured .gb-unit { color: #93c5fd; }
+        .dot { width: 5px; height: 5px; background: #10b981; border-radius: 50%; box-shadow: 0 0 6px #10b981; }
 
-        /* Indicators & Scroll */
-        .dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 15px;
-            padding-bottom: 30px;
-        }
-        .dot { width: 6px; height: 6px; border-radius: 50%; background: #1e293b; transition: 0.3s; }
-        .dot.active { background: var(--primary-blue); width: 18px; border-radius: 10px; }
+        /* Indicators */
+        .dots-nav { display: flex; justify-content: center; gap: 8px; margin-bottom: 25px; }
+        .i-dot { width: 6px; height: 6px; background: #1e293b; border-radius: 50%; transition: 0.3s; }
+        .i-dot.active { background: var(--accent-blue); width: 20px; border-radius: 10px; }
 
-        .scroll-btn {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            cursor: pointer;
-            z-index: 10;
+        /* Button */
+        .action-container { padding: 0 40px 40px 40px; }
+        .buy-btn {
+            width: 100%;
+            background: var(--accent-blue);
+            padding: 18px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+            transition: 0.3s;
         }
+        .buy-btn:active { transform: scale(0.96); opacity: 0.9; }
+
     </style>
 </head>
 <body>
 
-    <!-- Page 1 -->
+    <!-- Hero Page -->
     <section id="page1" class="page">
         <header>
-            <div class="brand">BLUE EDGE</div>
-            <div class="help-btn">
-                <img src="https://raw.githubusercontent.com/tta1873/tta1873.github.io/refs/heads/main/icons8-telegram-96.png" width="14" alt="TG">
+            <div class="brand std-font">BLUE EDGE</div>
+            <div class="help-btn std-font">
+                <img src="https://raw.githubusercontent.com/tta1873/tta1873.github.io/refs/heads/main/icons8-telegram-96.png" width="16" alt="TG">
                 <span>အကူအညီရယူရန်</span>
             </div>
         </header>
 
-        <div class="hero-content padding-x">
-            <div class="text-blue-500 mb-2">
+        <div class="hero-content">
+            <div class="mb-4 text-blue-500 opacity-60">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
             </div>
-            <div class="text-2xl font-light">တစ်ခုတည်းမှာ</div>
-            <h1 class="hero-title">PROTOCOL <br><span class="text-xl font-normal text-gray-500">အကုန်ရ</span></h1>
-            <p class="hero-desc">Hysteria 2 နှင့် Vless (Reality) တို့ကို Plan တိုင်းမှာ အသုံးပြုနိုင်ပါသည်။ Device Limit မရှိ High Speed ဖြင့် စိတ်ကြိုက်အသုံးပြုနိုင်ပါပြီ။</p>
+            <div class="text-2xl font-light text-slate-400">တစ်နေရာတည်းမှာ</div>
+            <h1 class="hero-title std-font">
+                <span class="animate-protocol">PROTOCOL</span> <br>
+                <span class="text-xl font-normal text-slate-600 std-font">အကုန်ရ</span>
+            </h1>
+            <p class="hero-desc">
+                Hysteria 2 နှင့် Vless (Reality) တို့ကို Plan တိုင်းမှာ စိတ်ကြိုက်ပြောင်းလဲသုံးနိုင်ပါတယ်။ Device Limit မရှိဘဲ Backup Key ပါဝင်ပြီးသားဖြစ်လို့ စိတ်ချလက်ချ အသုံးပြုနိုင်ပါပြီ။
+            </p>
         </div>
 
-        <img src="20260304_084442.png" alt="VPN Security" class="hero-img">
+        <div class="locker-box">
+            <img src="20260304_084442.png" alt="Secure Access" class="locker-img">
+        </div>
 
-        <div class="scroll-btn" onclick="document.getElementById('page2').scrollIntoView()">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-20 animate-bounce" onclick="document.getElementById('page2').scrollIntoView({behavior:'smooth'})">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
         </div>
     </section>
 
-    <!-- Page 2 -->
+    <!-- Pricing Page -->
     <section id="page2" class="page">
-        <div class="text-center mt-6">
-            <p class="text-[0.6rem] font-bold text-gray-600 tracking-widest uppercase">Select Access Plan</p>
+        <div class="text-center mt-8">
+            <p class="std-font text-[0.6rem] font-bold text-slate-700 tracking-[0.2em] uppercase">Select Your Access Plan</p>
         </div>
 
-        <div class="pricing-wrapper" id="pScroll">
-            <!-- Basic -->
+        <div class="pricing-container" id="pSlider">
+            <!-- Card 1 (Putter) -->
             <div class="card">
-                <div class="card-header"><span>Basic Access</span><span>Monthly</span></div>
-                <div class="status-decor">
-                    <div class="status-dot"></div>
-                    <span class="status-text">ENCRYPTED TUNNEL</span>
+                <div class="card-label std-font"><span>BASIC</span><span>MO</span></div>
+                <div class="price-center">
+                    <div class="price-val">1500</div>
                 </div>
-                <div class="price-center"><div class="price-val">1500</div></div>
                 <div class="card-footer">
-                    <ul class="feature-list">
-                        <li>2 Protocols Ready</li>
-                        <li>Unlimited Devices</li>
-                        <li>Backup Key Incl.</li>
-                        <li>No Speed Limit</li>
-                    </ul>
-                    <div class="data-info"><span class="data-num">30</span><span class="gb-unit">GB</span></div>
+                    <div class="details-row">
+                        <ul class="feature-list std-font">
+                            <li>2 Protocols</li>
+                            <li>Unlimited Dev</li>
+                            <li>Backup Key</li>
+                            <li>No Speed Limit</li>
+                        </ul>
+                        <div class="data-wrap"><span class="data-val">30</span><span class="data-unit std-font">GB</span></div>
+                    </div>
+                    <div class="secure-tag std-font"><div class="dot"></div>SECURE TUNNEL ACTIVE</div>
                 </div>
             </div>
 
-            <!-- Standard -->
+            <!-- Card 2 (Featured - Tallest) -->
             <div class="card featured">
-                <div class="card-header"><span>Standard Access</span><span>Popular</span></div>
-                <div class="status-decor">
-                    <div class="status-dot"></div>
-                    <span class="status-text">PREMIUM SERVER</span>
+                <div class="card-label std-font"><span>STANDARD</span><span>POPULAR</span></div>
+                <div class="price-center">
+                    <div class="price-val">4500</div>
                 </div>
-                <div class="price-center"><div class="price-val">4500</div></div>
                 <div class="card-footer">
-                    <ul class="feature-list">
-                        <li>2 Protocols Ready</li>
-                        <li>Unlimited Devices</li>
-                        <li>Backup Key Incl.</li>
-                        <li>No Speed Limit</li>
-                    </ul>
-                    <div class="data-info"><span class="data-num">120</span><span class="gb-unit">GB</span></div>
+                    <div class="details-row">
+                        <ul class="feature-list std-font" style="color:#94a3b8">
+                            <li>2 Protocols</li>
+                            <li>Unlimited Dev</li>
+                            <li>Backup Key</li>
+                            <li>No Speed Limit</li>
+                        </ul>
+                        <div class="data-wrap"><span class="data-val">120</span><span class="data-unit std-font" style="color:#3b82f6">GB</span></div>
+                    </div>
+                    <div class="secure-tag std-font" style="color:#475569"><div class="dot"></div>SECURE TUNNEL ACTIVE</div>
                 </div>
             </div>
 
-            <!-- Ultra -->
+            <!-- Card 3 (Putter) -->
             <div class="card">
-                <div class="card-header"><span>Ultra Access</span><span>Premium</span></div>
-                <div class="status-decor">
-                    <div class="status-dot"></div>
-                    <span class="status-text">MAX BANDWIDTH</span>
+                <div class="card-label std-font"><span>ULTRA</span><span>PREMIUM</span></div>
+                <div class="price-center">
+                    <div class="price-val">9000</div>
                 </div>
-                <div class="price-center"><div class="price-val">9000</div></div>
                 <div class="card-footer">
-                    <ul class="feature-list">
-                        <li>2 Protocols Ready</li>
-                        <li>Unlimited Devices</li>
-                        <li>Backup Key Incl.</li>
-                        <li>No Speed Limit</li>
-                    </ul>
-                    <div class="data-info"><span class="data-num">300</span><span class="gb-unit">GB</span></div>
+                    <div class="details-row">
+                        <ul class="feature-list std-font">
+                            <li>2 Protocols</li>
+                            <li>Unlimited Dev</li>
+                            <li>Backup Key</li>
+                            <li>No Speed Limit</li>
+                        </ul>
+                        <div class="data-wrap"><span class="data-val">300</span><span class="data-unit std-font">GB</span></div>
+                    </div>
+                    <div class="secure-tag std-font"><div class="dot"></div>SECURE TUNNEL ACTIVE</div>
                 </div>
             </div>
         </div>
 
-        <div class="dots">
-            <div class="dot"></div>
-            <div class="dot active"></div>
-            <div class="dot"></div>
+        <div class="dots-nav">
+            <div class="i-dot"></div>
+            <div class="i-dot active"></div>
+            <div class="i-dot"></div>
         </div>
 
-        <div class="px-10 pb-12 mt-auto">
-            <button class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl font-bold shadow-xl shadow-blue-900/30 transition-all active:scale-95">
-                အခုပဲ စတင်မည်
-            </button>
+        <div class="action-container">
+            <button class="buy-btn std-font">အခုပဲ ဝယ်ယူအသုံးပြုမည်</button>
         </div>
     </section>
 
     <script>
-        const scrollEl = document.getElementById('pScroll');
-        const dots = document.querySelectorAll('.dot');
-        scrollEl.addEventListener('scroll', () => {
-            const idx = Math.round(scrollEl.scrollLeft / (scrollEl.scrollWidth - scrollEl.clientWidth) * (dots.length - 1));
-            dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        const slider = document.getElementById('pSlider');
+        const dots = document.querySelectorAll('.i-dot');
+        
+        slider.addEventListener('scroll', () => {
+            const index = Math.round(slider.scrollLeft / (slider.scrollWidth - slider.clientWidth) * (dots.length - 1));
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
         });
-        window.onload = () => { scrollEl.scrollLeft = scrollEl.querySelector('.card').offsetWidth * 0.9; };
+
+        window.onload = () => {
+            const cardWidth = slider.querySelector('.card').offsetWidth;
+            slider.scrollLeft = (cardWidth + 20) * 0.9; 
+        };
     </script>
 </body>
 </html>
