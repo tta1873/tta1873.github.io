@@ -3,100 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern App Landing Page</title>
-    <style>
-        /* အခြေခံ Setting များ */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-            background-color: #0b0e14; /* Dark Background */
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 900px;
-            padding: 20px;
-        }
-
-        /* ခေါင်းစဉ်ပိုင်း */
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            background: linear-gradient(to right, #ffffff, #888888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        p {
-            font-size: 1.2rem;
-            color: #a0a0a0;
-            margin-bottom: 40px;
-        }
-
-        /* Download ခလုတ်များ */
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            background-color: #ffffff;
-            color: #000000;
-            padding: 15px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #e0e0e0;
-            transform: translateY(-3px);
-        }
-
-        .btn-secondary {
-            background-color: #1f2229;
-            color: #ffffff;
-            border: 1px solid #333;
-        }
-
-        .btn-secondary:hover {
-            background-color: #2d313a;
-        }
-
-        /* App Mockup (ပုံပြသသည့်နေရာ) */
-        mockup {
-            margin-top: 60px;
-            width: 100%;
-            max-width: 700px;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            border: 1px solid #333;
-        }
-    </style>
+    <title>Blue Edge Design</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="card">
+        <header>
+            <div class="brand">BLUE EDGE</div>
+            <div class="help-btn">
+                <span>အကူအညီရယူရန်</span>
+                <i class="telegram-icon">✈️</i>
+            </div>
+        </header>
 
-    <div class="container">
-        <h1>Channel TV Experience</h1>
-        <p>အကောင်းဆုံး ရုပ်သံလိုင်းများကို တစ်နေရာတည်းတွင် ကြည့်ရှုလိုက်ပါ။</p>
+        <main>
+            <div class="content">
+                <div class="wifi-icon">📶</div>
+                <h3 class="sub-title">တစ်ခုတည်းမှာ</h3>
+                <h1 class="main-title">PROTOCOL <small>အကုန်ရ</small></h1>
+                
+                <div class="description">
+                    <p>Hysteria 2 နှင့် Vless (Reality) တို့ကို <br>
+                    Plan တိုင်းမှာ စိတ်ကြိုက်ပြောင်းသုံးနိုင်ပါတယ်။</p>
+                    <p>Device Limit မရှိတဲ့အပြင် <br>
+                    Backup Key ပါဝင်ပြီးသားဖြစ်လို့ <br>
+                    စိတ်ချလက်ချ အသုံးပြုနိုင်ပါပြီ။</p>
+                </div>
+                <div class="thunder-icon">⚡</div>
+            </div>
 
-        <div class="btn-group">
-            <a href="#" class="btn">Download for Android</a>
-            <a href="#" class="btn btn-secondary">Learn More</a>
-        </div>
-
-        <img src=app-screenshot.png"alt="App Mockup" class="mockup">
+            <div class="image-container">
+                <img src="https://img.icons8.com/plasticine/400/lock.png" alt="Lock Icon" class="lock-img">
+            </div>
+        </main>
     </div>
-
 </body>
 </html>
