@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue Edge - Liquid Glass Edition</title>
+    <title>Blue Edge - Glass Logo Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @font-face {
@@ -19,7 +19,6 @@
         :root {
             --bg-dark: #020617;
             --accent-blue: #3b82f6;
-            --glass-blue: rgba(59, 130, 246, 0.2);
         }
 
         body, html {
@@ -30,7 +29,7 @@
             background-color: var(--bg-dark);
             color: white;
             scroll-behavior: smooth;
-            overflow: hidden; /* JavaScript will handle scroll when needed */
+            overflow: hidden; 
         }
 
         .std-font { font-family: ui-sans-serif, system-ui, sans-serif !important; }
@@ -42,9 +41,10 @@
             flex-direction: column;
             position: relative;
             flex-shrink: 0;
+            overflow: hidden;
         }
 
-        /* Header Style */
+        /* Header */
         header {
             position: absolute;
             top: 0;
@@ -56,66 +56,77 @@
             z-index: 50;
         }
 
-        .brand { font-weight: 900; font-size: 1.3rem; letter-spacing: 1px; color: #f8fafc; }
+        .brand { font-weight: 900; font-size: 1.2rem; letter-spacing: 2px; color: #f8fafc; opacity: 0.8; }
 
         .help-btn {
             background: rgba(255, 255, 255, 0.05);
-            padding: 10px 20px;
+            padding: 8px 18px;
             border-radius: 50px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
         }
 
-        /* Liquid Glass Text Style */
-        .liquid-glass {
-            font-family: ui-sans-serif, system-ui, sans-serif !important;
-            font-size: 5rem;
-            font-weight: 900;
-            color: rgba(255, 255, 255, 0.1);
-            position: relative;
-            background: linear-gradient(to bottom, #3b82f6, #1e40af, #3b82f6);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: liquid-move 4s ease-in-out infinite;
-            filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.4));
-            line-height: 1;
-        }
-
-        @keyframes liquid-move {
-            0%, 100% { background-position: 0% 50%; filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.3)); }
-            50% { background-position: 100% 50%; filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.6)); }
-        }
-
+        /* Hero Content */
         .hero-content {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 24px;
+            padding: 30px;
             z-index: 10;
         }
 
         .gateway-tag {
-            font-size: 1.1rem;
-            letter-spacing: 4px;
-            color: #64748b;
+            font-size: 1rem;
+            letter-spacing: 5px;
+            color: #475569;
             text-transform: uppercase;
-            margin-bottom: 10px;
-            font-weight: 300;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        /* Logo Glass Style Area */
+        .logo-glass-wrapper {
+            position: relative;
+            display: inline-block;
+            width: fit-content;
+            padding: 10px;
+            margin-left: -10px;
+        }
+
+        .glass-logo {
+            height: 85px; /* Text Size အရွယ်အစားလောက် ညှိထားသည် */
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.5)) brightness(1.2) contrast(1.1);
+            animation: logo-glow 4s ease-in-out infinite;
+        }
+
+        /* ပုံကို ဖန်သားလိုဖြစ်အောင် နောက်ခံ overlay တစ်ခုထည့်ခြင်း */
+        .logo-glass-wrapper::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(59, 130, 246, 0.05) 100%);
+            border-radius: 15px;
+            pointer-events: none;
+        }
+
+        @keyframes logo-glow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.3)) brightness(1.1); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.7)) brightness(1.3); transform: scale(1.02); }
         }
 
         .hero-desc {
-            font-size: 0.9rem;
-            color: #94a3b8;
-            max-width: 85%;
+            font-size: 0.85rem;
+            color: #64748b;
+            max-width: 80%;
             line-height: 1.8;
-            margin-top: 25px;
+            margin-top: 20px;
         }
 
         /* Navigation Arrow */
@@ -126,60 +137,60 @@
             transform: translateX(-50%);
             z-index: 100;
             cursor: pointer;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav-arrow.up { transform: translateX(-50%) rotate(180deg); }
 
         .arrow-circle {
-            width: 50px;
-            height: 50px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(5px);
-            animation: bounce 2s infinite;
+            animation: arrow-bounce 2s infinite;
         }
 
-        @keyframes bounce {
+        @keyframes arrow-bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
         }
 
-        /* Locker Animation Refined */
-        .locker-container {
+        /* Locker Animation */
+        .locker-box {
             position: absolute;
-            bottom: 60px;
-            right: -20px;
-            width: 260px;
+            bottom: 70px;
+            right: -30px;
+            width: 280px;
             z-index: 1;
+            pointer-events: none;
         }
         .locker-img {
             width: 100%;
-            animation: locker-blur-breathe 6s ease-in-out infinite;
+            animation: locker-breathe 6s ease-in-out infinite;
         }
 
-        @keyframes locker-blur-breathe {
-            0%, 100% { opacity: 0.2; filter: blur(8px); transform: scale(0.9); }
-            50% { opacity: 0.7; filter: blur(0px); transform: scale(1); }
+        @keyframes locker-breathe {
+            0%, 100% { opacity: 0.15; filter: blur(10px); transform: scale(0.9) rotate(-5deg); }
+            50% { opacity: 0.6; filter: blur(0px); transform: scale(1) rotate(0deg); }
         }
 
-        /* Page 2 Layout */
+        /* Page 2 - Subscription Area */
         #page2 {
             background: #020617;
-            justify-content: flex-start;
-            padding-top: 60px;
+            padding-top: 50px;
         }
 
         .card-slider {
             display: flex;
             overflow-x: auto;
-            padding: 40px;
-            gap: 20px;
+            padding: 30px 40px;
+            gap: 18px;
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
             align-items: flex-end;
@@ -188,21 +199,22 @@
 
         .card {
             min-width: 220px;
-            height: 350px;
+            height: 360px;
             background: #0f172a;
             border-radius: 24px;
             padding: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             display: flex;
             flex-direction: column;
             scroll-snap-align: center;
+            transition: 0.4s;
         }
 
         .card.featured {
-            height: 420px;
+            height: 430px;
             background: linear-gradient(180deg, #1e40af 0%, #1e3a8a 100%);
-            border: 2px solid var(--accent-blue);
-            box-shadow: 0 0 40px rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.15);
         }
 
         .price-center { flex-grow: 1; display: flex; justify-content: center; align-items: center; }
@@ -211,18 +223,19 @@
         .buy-btn-area { padding: 0 40px 40px 40px; }
         .buy-btn {
             width: 100%;
-            background: var(--accent-blue);
+            background: #2563eb;
             padding: 18px;
             border-radius: 20px;
             font-weight: 900;
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+            font-size: 0.95rem;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
         }
 
     </style>
 </head>
 <body id="mainBody">
 
-    <!-- Page 1 -->
+    <!-- Page 1: Hero Section -->
     <section id="page1" class="page">
         <header>
             <div class="brand std-font">BLUE EDGE</div>
@@ -234,37 +247,41 @@
 
         <div class="hero-content">
             <div class="gateway-tag std-font">Your Ultimate Gateway</div>
-            <h1 class="liquid-glass">PROTOCOL</h1>
+            
+            <!-- Glass Logo Area -->
+            <div class="logo-glass-wrapper">
+                <img src="aff8712a-c2ec-4cf6-8644-e3b87aa331d8_removalai_preview.png" alt="Protocol Logo" class="glass-logo">
+            </div>
             
             <p class="hero-desc">
                 Hysteria 2 နှင့် Vless (Reality) တို့ကို Plan တိုင်းမှာ စိတ်ကြိုက်ပြောင်းလဲသုံးနိုင်ပါတယ်။ Device Limit မရှိတဲ့အပြင် Backup Key ပါဝင်ပြီးသားဖြစ်လို့ စိတ်ချလက်ချ အသုံးပြုနိုင်ပါပြီ။
             </p>
         </div>
 
-        <div class="locker-container">
+        <div class="locker-box">
             <img src="20260304_084442.png" alt="Secure" class="locker-img">
         </div>
     </section>
 
-    <!-- Page 2 -->
+    <!-- Page 2: Subscription Area -->
     <section id="page2" class="page">
-        <div class="mt-12 text-center">
-            <h2 class="std-font text-xs font-bold text-slate-600 tracking-[0.3em] uppercase">Premium Subscriptions</h2>
+        <div class="mt-14 text-center">
+            <h2 class="std-font text-[0.6rem] font-bold text-slate-700 tracking-[0.4em] uppercase">Premium Subscriptions</h2>
         </div>
 
         <div class="card-slider" id="cardSlider">
             <!-- Basic -->
             <div class="card">
-                <div class="flex justify-between text-[0.6rem] text-blue-400 font-bold std-font"><span>BASIC</span><span>MO</span></div>
+                <div class="flex justify-between text-[0.6rem] text-blue-500 font-bold std-font"><span>BASIC</span><span>MO</span></div>
                 <div class="price-center"><div class="price-text">1500</div></div>
                 <div class="mt-auto flex justify-between items-baseline">
-                   <div class="text-[0.5rem] text-slate-500 leading-relaxed">• 2 Protocols<br>• Unlimited Dev<br>• Backup Key</div>
-                   <div class="flex items-baseline"><span class="num-font text-4xl">30</span><span class="text-[0.6rem] ml-1 font-black text-slate-700">GB</span></div>
+                   <div class="text-[0.5rem] text-slate-600 leading-relaxed">• 2 Protocols<br>• Unlimited Dev<br>• Backup Key</div>
+                   <div class="flex items-baseline"><span class="num-font text-4xl">30</span><span class="text-[0.6rem] ml-1 font-black text-slate-800">GB</span></div>
                 </div>
             </div>
             <!-- Featured -->
             <div class="card featured">
-                <div class="flex justify-between text-[0.6rem] text-white font-bold std-font"><span>STANDARD</span><span>POPULAR</span></div>
+                <div class="flex justify-between text-[0.6rem] text-blue-200 font-bold std-font"><span>STANDARD</span><span>POPULAR</span></div>
                 <div class="price-center"><div class="price-text">4500</div></div>
                 <div class="mt-auto flex justify-between items-baseline">
                    <div class="text-[0.5rem] text-blue-200 leading-relaxed">• 2 Protocols<br>• Unlimited Dev<br>• Backup Key</div>
@@ -273,11 +290,11 @@
             </div>
             <!-- Ultra -->
             <div class="card">
-                <div class="flex justify-between text-[0.6rem] text-blue-400 font-bold std-font"><span>ULTRA</span><span>MO</span></div>
+                <div class="flex justify-between text-[0.6rem] text-blue-500 font-bold std-font"><span>ULTRA</span><span>MO</span></div>
                 <div class="price-center"><div class="price-text">9000</div></div>
                 <div class="mt-auto flex justify-between items-baseline">
-                   <div class="text-[0.5rem] text-slate-500 leading-relaxed">• 2 Protocols<br>• Unlimited Dev<br>• Backup Key</div>
-                   <div class="flex items-baseline"><span class="num-font text-4xl">300</span><span class="text-[0.6rem] ml-1 font-black text-slate-700">GB</span></div>
+                   <div class="text-[0.5rem] text-slate-600 leading-relaxed">• 2 Protocols<br>• Unlimited Dev<br>• Backup Key</div>
+                   <div class="flex items-baseline"><span class="num-font text-4xl">300</span><span class="text-[0.6rem] ml-1 font-black text-slate-800">GB</span></div>
                 </div>
             </div>
         </div>
@@ -290,7 +307,7 @@
     <!-- Global Navigation Arrow -->
     <div class="nav-arrow" id="navArrow">
         <div class="arrow-circle">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
         </div>
     </div>
 
@@ -303,29 +320,26 @@
 
         arrow.addEventListener('click', () => {
             if (!isAtBottom) {
-                // Scroll to Page 2
                 page2.scrollIntoView({ behavior: 'smooth' });
                 arrow.classList.add('up');
                 isAtBottom = true;
             } else {
-                // Scroll to Page 1
                 page1.scrollIntoView({ behavior: 'smooth' });
                 arrow.classList.remove('up');
                 isAtBottom = false;
             }
         });
 
-        // Initialize slider position to center card
+        // Initialize slider position
         window.onload = () => {
             const cards = slider.querySelectorAll('.card');
             const centerPos = cards[1].offsetLeft - (window.innerWidth / 2) + (cards[1].offsetWidth / 2);
             slider.scrollLeft = centerPos;
         };
 
-        // Detect manual scrolling to update arrow state
+        // Scroll listener to sync arrow state
         window.addEventListener('scroll', () => {
-            const scrollPos = window.scrollY;
-            if (scrollPos > window.innerHeight / 2) {
+            if (window.scrollY > window.innerHeight / 2) {
                 arrow.classList.add('up');
                 isAtBottom = true;
             } else {
