@@ -3,114 +3,364 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLUE EDGE - Horizontal Pricing</title>
+    <title>Blue Edge - Official Premium Layout</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Oswald:wght@700&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', 'Padauk', sans-serif;
-            background-color: #020617;
-            color: #f8fafc;
+        @font-face {
+            font-family: 'MyanmarSagar';
+            src: url('https://raw.githubusercontent.com/tta1873/tta1873.github.io/e3eaa3afa28bfe51e8f8f638201b05e2f1a4120c/MyanmarSagar.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Heathergreen';
+            src: url('https://raw.githubusercontent.com/tta1873/tta1873.github.io/e3eaa3afa28bfe51e8f8f638201b05e2f1a4120c/Heathergreen.otf') format('opentype');
+        }
+
+        :root {
+            --bg-dark: #050a18;
+            --accent-blue: #2563eb;
+            --card-dark: #0f172a;
+            --text-gray: #94a3b8;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            color: white;
+            font-family: 'MyanmarSagar', sans-serif;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        .price-font {
-            font-family: 'Oswald', sans-serif;
-            letter-spacing: -0.05em;
-            line-height: 0.8;
-        }
+        .std-font { font-family: ui-sans-serif, system-ui, sans-serif !important; }
+        .num-font { font-family: 'Heathergreen', sans-serif !important; }
 
-        .gradient-bg {
-            background: radial-gradient(circle at top right, #1e3a8a 0%, #020617 70%);
-        }
-
-        /* Horizontal Scroll for Mobile */
-        .pricing-container {
+        /* Header Styles */
+        header {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .brand { font-weight: 800; font-size: 1.4rem; letter-spacing: 0.5px; }
+        
+        .help-btn {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.8rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 24px 40px 24px;
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.2) 0%, transparent 50%);
+            min-height: 80vh;
+            position: relative;
+        }
+
+        .wifi-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            color: #3b82f6;
+        }
+
+        .hero-sub { font-size: 1.5rem; font-weight: 300; color: #cbd5e1; }
+        
+        @keyframes protocolFlash {
+            0% { transform: scale(0.9); opacity: 0; filter: brightness(3) blur(10px); }
+            100% { transform: scale(1); opacity: 1; filter: brightness(1) blur(0px); }
+        }
+
+        .hero-main {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #3b82f6;
+            line-height: 1;
+            margin: 10px 0;
+            letter-spacing: -1px;
+            animation: protocolFlash 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+        }
+
+        .hero-desc {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            max-width: 90%;
+            margin-top: 20px;
+        }
+
+        /* Lightning Bolt Animation */
+        .bolt-container {
+            position: absolute;
+            right: 0px;
+            top: 25%;
+            width: 180px;
+            opacity: 0.4;
+            filter: drop-shadow(0 0 30px #2563eb);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding-bottom: 60px;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end; /* Card တွေကို အောက်ခြေကပ်ထားမယ် */
+            gap: 15px;
+            padding: 20px;
             overflow-x: auto;
-            gap: 1.5rem;
-            padding: 1rem 0.5rem 2rem 0.5rem;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
         }
+        .card-container::-webkit-scrollbar { display: none; }
 
-        /* Hide scrollbar but keep functionality */
-        .pricing-container::-webkit-scrollbar {
-            display: none;
-        }
-
-        .pricing-card {
-            flex: 0 0 320px; /* Fixed width for horizontal layout */
-            scroll-snap-align: center;
-            background: #111827;
-            border: 1px solid #1e293b;
-            border-radius: 40px;
-            padding: 2.5rem;
+        /* Card Base Styles */
+        .card {
+            min-width: 200px;
+            background: #0f172a;
+            border-radius: 24px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             flex-direction: column;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        /* Putter Side Cards (30px less) */
+        .card.side {
+            height: 340px;
+            opacity: 0.7;
+        }
+
+        /* Featured Middle Card (Tall) */
+        .card.featured {
+            height: 420px;
+            background: linear-gradient(180deg, #1e40af 0%, #1e3a8a 100%);
+            border: none;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            z-index: 10;
+            opacity: 1;
+        }
+
+        .card-header {
+            display: flex;
             justify-content: space-between;
-            min-height: 520px;
-            transition: all 0.3s ease;
-        }
-
-        @media (min-width: 1024px) {
-            .pricing-container {
-                justify-content: center;
-                overflow-x: visible;
-            }
-            .pricing-card {
-                flex: 0 0 360px;
-            }
-        }
-
-        .pricing-card:hover {
-            border-color: #3b82f6;
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .currency-text {
-            font-size: 1.5rem;
-            color: #94a3b8;
-            margin-left: 5px;
+            font-size: 0.65rem;
             font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.6);
         }
+
+        .card.featured .card-header { color: white; }
+
+        /* Centered Price */
+        .price-box {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .price-text {
+            font-family: 'Heathergreen', sans-serif;
+            font-size: 7.5rem;
+            line-height: 0.8;
+            color: white;
+        }
+
+        .ks-label {
+            align-self: flex-start;
+            font-size: 0.8rem;
+            font-weight: 900;
+            margin-top: -10px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Footer Details */
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 10px;
+        }
+
+        .features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.55rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.6;
+        }
+        .features li::before { content: "• "; margin-right: 4px; }
+
+        .gb-wrap { display: flex; align-items: baseline; }
+        .gb-val { font-family: 'Heathergreen', sans-serif; font-size: 3.5rem; line-height: 0.8; }
+        .gb-unit { font-size: 0.6rem; font-weight: 900; margin-left: 3px; color: rgba(255,255,255,0.4); }
+
+        /* Purchase Button */
+        .btn-container { padding: 0 24px 40px 24px; }
+        .buy-btn {
+            width: 100%;
+            background: var(--accent-blue);
+            padding: 18px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 1rem;
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .buy-btn:active { transform: scale(0.97); }
+
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.5rem;
+            color: #475569;
+            margin-top: 15px;
+            letter-spacing: 0.5px;
+            font-weight: 800;
+        }
+        .dot { width: 5px; height: 5px; background: #10b981; border-radius: 50%; box-shadow: 0 0 8px #10b981; }
+
     </style>
 </head>
-<body class="gradient-bg min-h-screen">
+<body>
 
-    <!-- Nav -->
-    <nav class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto">
-        <div class="text-2xl font-black tracking-tighter text-white">
-            BLUE <span class="text-blue-500">EDGE</span>
+    <header>
+        <div class="brand std-font">BLUE EDGE</div>
+        <div class="help-btn std-font">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <span>အကူအညီရယူရန်</span>
         </div>
-        <a href="#" class="bg-blue-600/10 border border-blue-500/30 px-6 py-2 rounded-full text-sm font-semibold">
-            အကူအညီယူရန် <i class="fab fa-telegram-plane ml-1"></i>
-        </a>
-    </nav>
+    </header>
 
-    <!-- Header Section -->
-    <section class="text-center py-10 px-6">
-        <h1 class="text-4xl md:text-6xl font-black text-white mb-4 uppercase">PROTOCOL Pricing</h1>
-        <p class="text-slate-400 max-w-xl mx-auto">အမြန်ဆုံးနဲ့ စိတ်အချရဆုံး VPN ဝန်ဆောင်မှုများအတွက် သင်နဲ့ကိုက်ညီမယ့် Plan ကို ရွေးချယ်ပါ။</p>
+    <section class="hero">
+        <div class="wifi-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.59 16.11a6 6 0 0 1 6.82 0M12 20h.01"/></svg>
+        </div>
+        
+        <div class="hero-sub">တစ်နေရာတည်းမှာ</div>
+        <h1 class="hero-main std-font">PROTOCOL <span class="text-white/20 text-xl font-normal">အကုန်ရ</span></h1>
+        
+        <p class="hero-desc">
+            Hysteria 2 နှင့် Vless (Reality) တို့ကို Plan တိုင်းမှာ စိတ်ကြိုက်ပြောင်းလဲသုံးနိုင်ပါတယ်။ Device Limit မရှိတဲ့အပြင် Backup Key ပါဝင်ပြီးသားဖြစ်လို့ စိတ်ချလက်ချ အသုံးပြုနိုင်ပါပြီ။
+        </p>
+
+        <div class="bolt-container">
+            <svg viewBox="0 0 24 24" fill="#3b82f6"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
     </section>
 
-    <!-- Pricing Horizontal Section -->
-    <section class="max-w-[1400px] mx-auto px-4 overflow-hidden">
-        <div class="pricing-container">
-            
-            <!-- Card 1: Basic -->
-            <div class="pricing-card">
-                <div class="flex justify-between items-start">
-                    <span class="text-slate-400 font-bold uppercase text-xs tracking-widest">Basic Plan</span>
-                    <span class="text-slate-500 font-bold uppercase text-[10px] tracking-[0.2em]">MONTHLY</span><!-- Footer Action -->
-    <div class="text-center py-10">
-        <button class="bg-white text-black px-12 py-4 rounded-full font-black text-lg hover:bg-blue-500 hover:text-white transition-all">
-            BUY NOW <i class="fas fa-shopping-cart ml-2"></i>
+    <section class="pricing-section">
+        <div class="card-container">
+            <!-- Basic Plan -->
+            <div class="card side">
+                <div class="card-header std-font"><span>Basic Plan</span><span>Monthly</span></div>
+                <div class="price-box">
+                    <div class="price-val price-text">1500</div>
+                    <div class="ks-label std-font">KS</div>
+                </div>
+                <div class="card-footer">
+                    <ul class="features std-font">
+                        <li>2 Protocols Supported</li>
+                        <li>Unlimited Devices</li>
+                        <li>Backup Key Included</li>
+                        <li>No Speed Limit</li>
+                    </ul>
+                    <div class="gb-wrap"><span class="gb-val">30</span><span class="gb-unit std-font">GB</span></div>
+                </div>
+            </div>
+
+            <!-- Standard Plan (Active/Featured) -->
+            <div class="card featured">
+                <div class="card-header std-font"><span>Standard Plan</span><span>Monthly</span></div>
+                <div class="price-box">
+                    <div class="price-val price-text">4500</div>
+                    <div class="ks-label std-font" style="color: white; opacity: 0.6;">KS</div>
+                </div>
+                <div class="card-footer">
+                    <ul class="features std-font" style="color: white; opacity: 0.7;">
+                        <li>2 Protocols Supported</li>
+                        <li>Unlimited Devices</li>
+                        <li>Backup Key Included</li>
+                        <li>No Speed Limit</li>
+                    </ul>
+                    <div class="gb-wrap"><span class="gb-val">120</span><span class="gb-unit std-font" style="color: white; opacity: 0.6;">GB</span></div>
+                </div>
+            </div>
+
+            <!-- Ultra Plan -->
+            <div class="card side">
+                <div class="card-header std-font"><span>Ultra Plan</span><span>Monthly</span></div>
+                <div class="price-box">
+                    <div class="price-val price-text">9000</div>
+                    <div class="ks-label std-font">KS</div>
+                </div>
+                <div class="card-footer">
+                    <ul class="features std-font">
+                        <li>2 Protocols Supported</li>
+                        <li>Unlimited Devices</li>
+                        <li>Backup Key Included</li>
+                        <li>No Speed Limit</li>
+                    </ul>
+                    <div class="gb-wrap"><span class="gb-val">300</span><span class="gb-unit std-font">GB</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-center mt-6">
+            <div class="secure-badge std-font"><div class="dot"></div>SECURE TUNNEL ACTIVE</div>
+        </div>
+    </section>
+
+    <div class="btn-container">
+        <button class="buy-btn std-font">
+            <span>ဝယ်ယူအသုံးပြုမည်</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
-        <p class="mt-4 text-slate-600 text-sm italic">ဖုန်းဖြင့်ကြည့်ပါက Card များကို ဘေးသို့ ဆွဲကြည့်နိုင်ပါသည်</p>
     </div>
 
+    <script>
+        // Auto-scroll to middle card on load
+        window.onload = () => {
+            const container = document.querySelector('.card-container');
+            const featured = document.querySelector('.card.featured');
+            const scrollPos = featured.offsetLeft - (window.innerWidth / 2) + (featured.offsetWidth / 2);
+            container.scrollLeft = scrollPos;
+        }
+    </script>
 </body>
 </html>
