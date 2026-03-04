@@ -3,319 +3,373 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue Edge - Fixed Premium Layout</title>
+    <title>Blue Edge - Enhanced VPN UI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Heather Green font နှင့် အနီးစပ်ဆုံး Condensed font ကို အသုံးပြုထားသည် */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Bebas+Neue&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Bebas+Neue&display=swap');
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #050a18;
+        :root {
+            --primary-blue: #4a90ff;
+            --bg-dark: #050a18;
+            --card-bg: #0f172a;
+        }
+
+        body, html {
             margin: 0;
             padding: 0;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
             color: white;
+            scroll-behavior: smooth;
             overflow-x: hidden;
         }
 
-        .bg-glow {
+        /* Full Page Layout */
+        .page {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Page 1 - Hero Section */
+        #page1 {
             background: radial-gradient(circle at top right, #1e4eb8 0%, #050a18 85%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            padding: 20px;
         }
 
-        .container {
-            max-width: 450px;
-            margin: 0 auto;
-            padding: 15px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Header */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-top: 10px;
+            padding: 10px 5px;
         }
 
-        .brand {
-            font-weight: 900;
-            font-size: 1.2rem;
-            letter-spacing: 0.5px;
-        }
+        .brand { font-weight: 900; font-size: 1.3rem; letter-spacing: 1px; }
 
         .help-btn {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.75rem;
             display: flex;
-            flex-direction: row-reverse;
             align-items: center;
-            gap: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .wifi-dot {
-            background: rgba(255, 255, 255, 0.1);
-            width: 32px;
-            height: 32px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            margin-bottom: 12px;
-            color: #4a90ff;
-        }
-
-        .main-title {
-            font-size: 3.2rem;
-            font-weight: 900;
-            color: #4a90ff;
-            line-height: 0.85;
-            margin: 10px 0;
-        }
-
-        .desc-text {
-            font-size: 0.8rem;
-            color: #94a3b8;
-            line-height: 1.6;
-            max-width: 65%;
-            margin-bottom: 10px;
-        }
-
-        .hero-lock-img {
-            position: absolute;
-            right: -25px;
-            top: 120px;
-            width: 250px;
-            z-index: 1;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
-        }
-
-        /* Pricing Grid - ၃ ခုလုံး ဖုန်းထဲ ဆန့်အောင်ညှိထားသည် */
-        .pricing-grid {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            gap: 6px;
-            margin-top: auto;
-            padding-bottom: 20px;
-            z-index: 10;
-        }
-
-        .card {
-            background: #0f172a;
+            gap: 8px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 14px;
-            padding: 12px 8px;
-            flex: 1;
-            min-width: 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero-content {
+            margin-top: 50px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            font-weight: 900;
+            color: var(--primary-blue);
+            line-height: 0.85;
+            margin: 15px 0;
+            text-shadow: 0 0 30px rgba(74, 144, 255, 0.3);
+        }
+
+        .hero-desc {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            line-height: 1.7;
+            max-width: 80%;
+        }
+
+        .hero-img {
+            position: absolute;
+            bottom: 50px;
+            right: -30px;
+            width: 280px;
+            z-index: 1;
+            filter: drop-shadow(0 20px 50px rgba(0,0,0,0.5));
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Page 2 - Pricing Cards Section */
+        #page2 {
+            background-color: var(--bg-dark);
+            justify-content: center;
+            padding-top: 30px;
+        }
+
+        .pricing-wrapper {
+            display: flex;
+            overflow-x: auto;
+            padding: 30px 50px 50px 50px;
+            gap: 30px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+        .pricing-wrapper::-webkit-scrollbar { display: none; }
+
+        /* Card Effect & Design */
+        .card {
+            min-width: 250px;
+            height: 400px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 28px;
+            padding: 22px;
+            scroll-snap-align: center;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            justify-content: space-between;
+            position: relative;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Card Hover Effect */
+        .card:hover {
+            border-color: rgba(74, 144, 255, 0.4);
+            box-shadow: 0 0 40px rgba(74, 144, 255, 0.15);
         }
 
         .card.featured {
-            background: linear-gradient(180deg, #1e40af 0%, #172554 100%);
-            border: 1px solid #3b82f6;
-            transform: scale(1.05);
-            padding: 16px 8px;
-            z-index: 15;
+            background: linear-gradient(165deg, #1e40af 0%, #050a18 100%);
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            transform: scale(1.06);
+            box-shadow: 0 20px 50px rgba(30, 64, 175, 0.4);
         }
 
-        .card-top {
+        .card-header {
             display: flex;
             justify-content: space-between;
-            font-size: 0.45rem;
-            font-weight: bold;
-            color: #64748b;
+            font-size: 0.6rem;
+            font-weight: 800;
+            color: #475569;
             text-transform: uppercase;
-            margin-bottom: 4px;
+            letter-spacing: 1px;
         }
+        .featured .card-header { color: #93c5fd; }
 
-        .featured .card-top { color: #bfdbfe; }
-
-        /* Heather Green Style (Condensed Heavy) */
-        .price-text {
-            font-family: 'Bebas Neue', cursive; /* Heather Green နှင့် အနီးစပ်ဆုံး */
-            font-size: 3.5rem;
-            line-height: 0.8;
-            margin-bottom: 15px;
-            letter-spacing: 0.5px;
+        /* Price Center */
+        .price-center {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .price-val {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 5.5rem;
+            line-height: 1;
             color: white;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
+        .featured .price-val { font-size: 6.5rem; }
 
-        .featured .price-text {
-            font-size: 4.8rem;
+        /* Status UI Decor */
+        .status-decor {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 15px 0;
+            opacity: 0.7;
         }
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10b981;
+        }
+        .status-text { font-size: 0.55rem; font-weight: 700; color: #64748b; }
+        .featured .status-text { color: #93c5fd; }
 
-        /* Footer Section inside Card */
+        /* Footer Alignment (Features + Data) */
         .card-footer {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end; /* အောက်ခြေတန်းညှိရန် */
-            margin-top: auto;
+            align-items: flex-end; /* အောက်ခြေတန်းညှိ */
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .feature-list {
             list-style: none;
             padding: 0;
             margin: 0;
-            font-size: 0.38rem;
-            color: #94a3b8;
-            line-height: 1.8;
+            font-size: 0.52rem;
+            color: rgba(148, 163, 184, 0.5);
+            line-height: 1.6;
         }
-
-        .featured .feature-list { color: #dbeafe; }
-
+        .featured .feature-list { color: rgba(191, 219, 254, 0.7); }
         .feature-list li::before {
             content: "•";
-            margin-right: 3px;
+            margin-right: 5px;
+            color: var(--primary-blue);
         }
 
-        .data-box {
+        .data-info {
             display: flex;
             align-items: flex-end;
-            line-height: 0.8;
-            text-align: right;
+            line-height: 0.75;
         }
-
-        .data-val {
+        .data-num {
             font-family: 'Bebas Neue', cursive;
-            font-size: 2.2rem;
+            font-size: 3.5rem;
             color: white;
         }
-
-        .featured .data-val {
-            font-size: 3rem;
-        }
-
         .gb-unit {
-            font-size: 0.45rem;
-            font-weight: bold;
-            color: #64748b;
-            margin-left: 1px;
-            padding-bottom: 2px;
+            font-size: 0.65rem;
+            font-weight: 900;
+            color: #475569;
+            margin-left: 2px;
+            padding-bottom: 7px;
         }
+        .featured .gb-unit { color: #93c5fd; }
 
-        .featured .gb-unit { color: #bfdbfe; }
+        /* Indicators & Scroll */
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            padding-bottom: 30px;
+        }
+        .dot { width: 6px; height: 6px; border-radius: 50%; background: #1e293b; transition: 0.3s; }
+        .dot.active { background: var(--primary-blue); width: 18px; border-radius: 10px; }
 
-        /* Small screen optimization */
-        @media (max-width: 360px) {
-            .price-text { font-size: 2.8rem; }
-            .featured .price-text { font-size: 3.8rem; }
-            .data-val { font-size: 1.8rem; }
-            .featured .data-val { font-size: 2.4rem; }
+        .scroll-btn {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            z-index: 10;
         }
     </style>
 </head>
-<body class="bg-glow">
+<body>
 
-    <div class="container">
-        <!-- Header -->
+    <!-- Page 1 -->
+    <section id="page1" class="page">
         <header>
             <div class="brand">BLUE EDGE</div>
             <div class="help-btn">
-                <img src="https://raw.githubusercontent.com/tta1873/tta1873.github.io/refs/heads/main/icons8-telegram-96.png" alt="TG" class="tg-icon" width="16" height="16">
+                <img src="https://raw.githubusercontent.com/tta1873/tta1873.github.io/refs/heads/main/icons8-telegram-96.png" width="14" alt="TG">
                 <span>အကူအညီရယူရန်</span>
             </div>
         </header>
 
-        <!-- Hero Section -->
-        <div class="hero">
-            <div class="wifi-dot">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+        <div class="hero-content padding-x">
+            <div class="text-blue-500 mb-2">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
             </div>
-            <div class="text-xl font-light">တစ်နေရာတည်းမှာ</div>
-            <h1 class="main-title">PROTOCOL <span class="text-sm font-normal text-gray-500">အကုန်ရ</span></h1>
-            
-            <div class="desc-text">
-                Hysteria 2 နှင့် Vless (Reality) တို့ကို Plan တိုင်းမှာ စိတ်ကြိုက်ပြောင်းလဲအသုံးပြုနိုင်ပါတယ်။
-                Device Limit မရှိတဲ့အပြင် Backup Key ပါဝင်ပြီးသားဖြစ်ပါတယ်။
-            </div>
-
-            <!-- Lock Image from your assets -->
-            <img src="20260304_084442.png" alt="Lock" class="hero-lock-img">
+            <div class="text-2xl font-light">တစ်ခုတည်းမှာ</div>
+            <h1 class="hero-title">PROTOCOL <br><span class="text-xl font-normal text-gray-500">အကုန်ရ</span></h1>
+            <p class="hero-desc">Hysteria 2 နှင့် Vless (Reality) တို့ကို Plan တိုင်းမှာ အသုံးပြုနိုင်ပါသည်။ Device Limit မရှိ High Speed ဖြင့် စိတ်ကြိုက်အသုံးပြုနိုင်ပါပြီ။</p>
         </div>
 
-        <!-- Pricing Grid -->
-        <div class="pricing-grid">
-            <!-- Basic Plan -->
+        <img src="20260304_084442.png" alt="VPN Security" class="hero-img">
+
+        <div class="scroll-btn" onclick="document.getElementById('page2').scrollIntoView()">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+        </div>
+    </section>
+
+    <!-- Page 2 -->
+    <section id="page2" class="page">
+        <div class="text-center mt-6">
+            <p class="text-[0.6rem] font-bold text-gray-600 tracking-widest uppercase">Select Access Plan</p>
+        </div>
+
+        <div class="pricing-wrapper" id="pScroll">
+            <!-- Basic -->
             <div class="card">
-                <div class="card-top">
-                    <span>Basic Plan</span>
-                    <span>Monthly</span>
+                <div class="card-header"><span>Basic Access</span><span>Monthly</span></div>
+                <div class="status-decor">
+                    <div class="status-dot"></div>
+                    <span class="status-text">ENCRYPTED TUNNEL</span>
                 </div>
-                <div class="price-text">1500</div>
+                <div class="price-center"><div class="price-val">1500</div></div>
                 <div class="card-footer">
                     <ul class="feature-list">
-                        <li>2 Protocols Supported</li>
+                        <li>2 Protocols Ready</li>
                         <li>Unlimited Devices</li>
-                        <li>Backup Key Included</li>
+                        <li>Backup Key Incl.</li>
                         <li>No Speed Limit</li>
                     </ul>
-                    <div class="data-box">
-                        <span class="data-val">30</span>
-                        <span class="gb-unit">GB</span>
-                    </div>
+                    <div class="data-info"><span class="data-num">30</span><span class="gb-unit">GB</span></div>
                 </div>
             </div>
 
-            <!-- Standard Plan (Featured) -->
+            <!-- Standard -->
             <div class="card featured">
-                <div class="card-top">
-                    <span>Standard Plan</span>
-                    <span>Monthly</span>
+                <div class="card-header"><span>Standard Access</span><span>Popular</span></div>
+                <div class="status-decor">
+                    <div class="status-dot"></div>
+                    <span class="status-text">PREMIUM SERVER</span>
                 </div>
-                <div class="price-text">4500</div>
+                <div class="price-center"><div class="price-val">4500</div></div>
                 <div class="card-footer">
                     <ul class="feature-list">
-                        <li>2 Protocols Supported</li>
+                        <li>2 Protocols Ready</li>
                         <li>Unlimited Devices</li>
-                        <li>Backup Key Included</li>
+                        <li>Backup Key Incl.</li>
                         <li>No Speed Limit</li>
                     </ul>
-                    <div class="data-box">
-                        <span class="data-val">120</span>
-                        <span class="gb-unit">GB</span>
-                    </div>
+                    <div class="data-info"><span class="data-num">120</span><span class="gb-unit">GB</span></div>
                 </div>
             </div>
 
-            <!-- Ultra Plan -->
+            <!-- Ultra -->
             <div class="card">
-                <div class="card-top">
-                    <span>Ultra Plan</span>
-                    <span>Monthly</span>
+                <div class="card-header"><span>Ultra Access</span><span>Premium</span></div>
+                <div class="status-decor">
+                    <div class="status-dot"></div>
+                    <span class="status-text">MAX BANDWIDTH</span>
                 </div>
-                <div class="price-text">9000</div>
+                <div class="price-center"><div class="price-val">9000</div></div>
                 <div class="card-footer">
                     <ul class="feature-list">
-                        <li>2 Protocols Supported</li>
+                        <li>2 Protocols Ready</li>
                         <li>Unlimited Devices</li>
-                        <li>Backup Key Included</li>
+                        <li>Backup Key Incl.</li>
                         <li>No Speed Limit</li>
                     </ul>
-                    <div class="data-box">
-                        <span class="data-val">300</span>
-                        <span class="gb-unit">GB</span>
-                    </div>
+                    <div class="data-info"><span class="data-num">300</span><span class="gb-unit">GB</span></div>
                 </div>
             </div>
         </div>
-    </div>
 
+        <div class="dots">
+            <div class="dot"></div>
+            <div class="dot active"></div>
+            <div class="dot"></div>
+        </div>
+
+        <div class="px-10 pb-12 mt-auto">
+            <button class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl font-bold shadow-xl shadow-blue-900/30 transition-all active:scale-95">
+                အခုပဲ စတင်မည်
+            </button>
+        </div>
+    </section>
+
+    <script>
+        const scrollEl = document.getElementById('pScroll');
+        const dots = document.querySelectorAll('.dot');
+        scrollEl.addEventListener('scroll', () => {
+            const idx = Math.round(scrollEl.scrollLeft / (scrollEl.scrollWidth - scrollEl.clientWidth) * (dots.length - 1));
+            dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        });
+        window.onload = () => { scrollEl.scrollLeft = scrollEl.querySelector('.card').offsetWidth * 0.9; };
+    </script>
 </body>
 </html>
