@@ -3,353 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue Edge - Animated Premium UI</title>
+    <title>BLUE EDGE - Horizontal Pricing</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Oswald:wght@700&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        @font-face {
-            font-family: 'MyanmarSagar';
-            src: url('https://raw.githubusercontent.com/tta1873/tta1873.github.io/e3eaa3afa28bfe51e8f8f638201b05e2f1a4120c/MyanmarSagar.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Heathergreen';
-            src: url('https://raw.githubusercontent.com/tta1873/tta1873.github.io/e3eaa3afa28bfe51e8f8f638201b05e2f1a4120c/Heathergreen.otf') format('opentype');
-        }
-
-        :root {
-            --bg-dark: #020617;
-            --card-bg: #0f172a;
-            --accent-blue: #3b82f6;
-            --text-dim: #94a3b8;
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: 'MyanmarSagar', sans-serif;
-            background-color: var(--bg-dark);
-            color: white;
-            scroll-behavior: smooth;
+        body {
+            font-family: 'Inter', 'Padauk', sans-serif;
+            background-color: #020617;
+            color: #f8fafc;
             overflow-x: hidden;
         }
 
-        .std-font { font-family: ui-sans-serif, system-ui, sans-serif !important; }
-        .number-font { font-family: 'Heathergreen', sans-serif !important; }
-
-        .page {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            position: relative;
+        .price-font {
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: -0.05em;
+            line-height: 0.8;
         }
 
-        /* PROTOCOL Animation - Flash & Slide */
-        @keyframes protocolEntry {
-            0% { transform: scale(0.8) translateY(20px); opacity: 0; filter: blur(10px) brightness(2); }
-            70% { transform: scale(1.05); opacity: 1; filter: blur(0px) brightness(1.5); }
-            100% { transform: scale(1) translateY(0); opacity: 1; filter: brightness(1); }
+        .gradient-bg {
+            background: radial-gradient(circle at top right, #1e3a8a 0%, #020617 70%);
         }
 
-        .animate-protocol {
-            display: inline-block;
-            animation: protocolEntry 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-            color: #3b82f6;
-            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-        }
-
-        /* Hero Page */
-        #page1 {
-            background: radial-gradient(circle at 50% -20%, #1e3a8a 0%, #020617 80%);
-            padding: 24px;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .brand { font-weight: 900; font-size: 1.3rem; letter-spacing: 1px; }
-
-        .help-btn {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-        }
-
-        .hero-content { margin-top: 50px; z-index: 10; }
-        .hero-title { font-size: 3.8rem; font-weight: 900; line-height: 0.9; margin: 15px 0; }
-        .hero-desc { font-size: 0.85rem; color: var(--text-dim); max-width: 85%; line-height: 1.7; }
-
-        /* Locker Breathing Animation */
-        .locker-box {
-            position: absolute;
-            bottom: 40px;
-            right: -15px;
-            width: 250px;
-            z-index: 1;
-        }
-        .locker-img {
-            width: 100%;
-            animation: locker-breathe 5s ease-in-out infinite;
-        }
-
-        @keyframes locker-breathe {
-            0%, 100% { opacity: 0.3; filter: blur(4px); transform: scale(0.92); }
-            50% { opacity: 0.9; filter: blur(0px); transform: scale(1); }
-        }
-
-        /* Page 2 - Card Layout Updates */
-        #page2 { justify-content: center; }
-
+        /* Horizontal Scroll for Mobile */
         .pricing-container {
             display: flex;
             overflow-x: auto;
-            padding: 30px 40px;
-            gap: 20px;
+            gap: 1.5rem;
+            padding: 1rem 0.5rem 2rem 0.5rem;
             scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-            align-items: center; /* ဝင်ရိုးဗဟိုညှိ */
+            -webkit-overflow-scrolling: touch;
         }
-        .pricing-container::-webkit-scrollbar { display: none; }
 
-        /* Card Base */
-        .card {
-            min-width: 230px;
-            height: 380px; /* ဘေးကတ်တွေအတွက် အရွယ်အစား (ပုထားသည်) */
-            background: var(--card-bg);
-            border: 1px solid rgba(59, 130, 246, 0.1);
-            border-radius: 28px;
-            padding: 24px;
+        /* Hide scrollbar but keep functionality */
+        .pricing-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .pricing-card {
+            flex: 0 0 320px; /* Fixed width for horizontal layout */
+            scroll-snap-align: center;
+            background: #111827;
+            border: 1px solid #1e293b;
+            border-radius: 40px;
+            padding: 2.5rem;
             display: flex;
             flex-direction: column;
-            scroll-snap-align: center;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: all 0.4s ease;
-        }
-
-        /* Middle Card (Featured) - 30px ခန့် ပိုရှည်သည် */
-        .card.featured {
-            height: 410px; 
-            border: 1.5px solid var(--accent-blue);
-            box-shadow: 0 0 40px rgba(59, 130, 246, 0.2);
-            z-index: 5;
-        }
-
-        .card-label {
-            display: flex;
             justify-content: space-between;
-            font-size: 0.65rem;
-            color: var(--accent-blue);
-            font-weight: 800;
+            min-height: 520px;
+            transition: all 0.3s ease;
         }
 
-        .price-center {
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .price-val {
-            font-family: 'Heathergreen', sans-serif;
-            font-size: 8rem;
-            color: white;
-            line-height: 1;
+        @media (min-width: 1024px) {
+            .pricing-container {
+                justify-content: center;
+                overflow-x: visible;
+            }
+            .pricing-card {
+                flex: 0 0 360px;
+            }
         }
 
-        .card-footer {
-            margin-top: auto;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 15px;
+        .pricing-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
         }
 
-        .details-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
+        .currency-text {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            margin-left: 5px;
+            font-weight: 700;
         }
-
-        .feature-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            font-size: 0.55rem;
-            color: #64748b;
-            line-height: 1.6;
-        }
-        .feature-list li::before { content: "• "; color: var(--accent-blue); }
-
-        .data-wrap { display: flex; align-items: baseline; }
-        .data-val { font-family: 'Heathergreen', sans-serif; font-size: 3.5rem; color: white; }
-        .data-unit { font-size: 0.7rem; font-weight: 900; color: #475569; margin-left: 2px; }
-
-        .secure-tag {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.5rem;
-            font-weight: 800;
-            color: #334155;
-            margin-top: 10px;
-        }
-        .dot { width: 5px; height: 5px; background: #10b981; border-radius: 50%; box-shadow: 0 0 6px #10b981; }
-
-        /* Indicators */
-        .dots-nav { display: flex; justify-content: center; gap: 8px; margin-bottom: 25px; }
-        .i-dot { width: 6px; height: 6px; background: #1e293b; border-radius: 50%; transition: 0.3s; }
-        .i-dot.active { background: var(--accent-blue); width: 20px; border-radius: 10px; }
-
-        /* Button */
-        .action-container { padding: 0 40px 40px 40px; }
-        .buy-btn {
-            width: 100%;
-            background: var(--accent-blue);
-            padding: 18px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 1rem;
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
-            transition: 0.3s;
-        }
-        .buy-btn:active { transform: scale(0.96); opacity: 0.9; }
-
     </style>
 </head>
-<body>
+<body class="gradient-bg min-h-screen">
 
-    <!-- Hero Page -->
-    <section id="page1" class="page">
-        <header>
-            <div class="brand std-font">BLUE EDGE</div>
-            <div class="help-btn std-font">
-                <img src="https://raw.githubusercontent.com/tta1873/tta1873.github.io/refs/heads/main/icons8-telegram-96.png" width="16" alt="TG">
-                <span>အကူအညီရယူရန်</span>
-            </div>
-        </header>
-
-        <div class="hero-content">
-            <div class="mb-4 text-blue-500 opacity-60">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-            </div>
-            <div class="text-2xl font-light text-slate-400">တစ်နေရာတည်းမှာ</div>
-            <h1 class="hero-title std-font">
-                <span class="animate-protocol">PROTOCOL</span> <br>
-                <span class="text-xl font-normal text-slate-600 std-font">အကုန်ရ</span>
-            </h1>
-            <p class="hero-desc">
-                Hysteria 2 နှင့် Vless (Reality) တို့ကို Plan တိုင်းမှာ စိတ်ကြိုက်ပြောင်းလဲသုံးနိုင်ပါတယ်။ Device Limit မရှိဘဲ Backup Key ပါဝင်ပြီးသားဖြစ်လို့ စိတ်ချလက်ချ အသုံးပြုနိုင်ပါပြီ။
-            </p>
+    <!-- Nav -->
+    <nav class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto">
+        <div class="text-2xl font-black tracking-tighter text-white">
+            BLUE <span class="text-blue-500">EDGE</span>
         </div>
+        <a href="#" class="bg-blue-600/10 border border-blue-500/30 px-6 py-2 rounded-full text-sm font-semibold">
+            အကူအညီယူရန် <i class="fab fa-telegram-plane ml-1"></i>
+        </a>
+    </nav>
 
-        <div class="locker-box">
-            <img src="20260304_084442.png" alt="Secure Access" class="locker-img">
-        </div>
-
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-20 animate-bounce" onclick="document.getElementById('page2').scrollIntoView({behavior:'smooth'})">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
-        </div>
+    <!-- Header Section -->
+    <section class="text-center py-10 px-6">
+        <h1 class="text-4xl md:text-6xl font-black text-white mb-4 uppercase">PROTOCOL Pricing</h1>
+        <p class="text-slate-400 max-w-xl mx-auto">အမြန်ဆုံးနဲ့ စိတ်အချရဆုံး VPN ဝန်ဆောင်မှုများအတွက် သင်နဲ့ကိုက်ညီမယ့် Plan ကို ရွေးချယ်ပါ။</p>
     </section>
 
-    <!-- Pricing Page -->
-    <section id="page2" class="page">
-        <div class="text-center mt-8">
-            <p class="std-font text-[0.6rem] font-bold text-slate-700 tracking-[0.2em] uppercase">Select Your Access Plan</p>
-        </div>
+    <!-- Pricing Horizontal Section -->
+    <section class="max-w-[1400px] mx-auto px-4 overflow-hidden">
+        <div class="pricing-container">
+            
+            <!-- Card 1: Basic -->
+            <div class="pricing-card">
+                <div class="flex justify-between items-start">
+                    <span class="text-slate-400 font-bold uppercase text-xs tracking-widest">Basic Plan</span>
+                    <span class="text-slate-500 font-bold uppercase text-[10px] tracking-[0.2em]">MONTHLY</span>
+<!-- Footer Action -->
+    <div class="text-center py-10">
+        <button class="bg-white text-black px-12 py-4 rounded-full font-black text-lg hover:bg-blue-500 hover:text-white transition-all">
+            BUY NOW <i class="fas fa-shopping-cart ml-2"></i>
+        </button>
+        <p class="mt-4 text-slate-600 text-sm italic">ဖုန်းဖြင့်ကြည့်ပါက Card များကို ဘေးသို့ ဆွဲကြည့်နိုင်ပါသည်</p>
+    </div>
 
-        <div class="pricing-container" id="pSlider">
-            <!-- Card 1 (Putter) -->
-            <div class="card">
-                <div class="card-label std-font"><span>BASIC</span><span>MO</span></div>
-                <div class="price-center">
-                    <div class="price-val">1500</div>
-                </div>
-                <div class="card-footer">
-                    <div class="details-row">
-                        <ul class="feature-list std-font">
-                            <li>2 Protocols</li>
-                            <li>Unlimited Dev</li>
-                            <li>Backup Key</li>
-                            <li>No Speed Limit</li>
-                        </ul>
-                        <div class="data-wrap"><span class="data-val">30</span><span class="data-unit std-font">GB</span></div>
-                    </div>
-                    <div class="secure-tag std-font"><div class="dot"></div>SECURE TUNNEL ACTIVE</div>
-                </div>
-            </div>
-
-            <!-- Card 2 (Featured - Tallest) -->
-            <div class="card featured">
-                <div class="card-label std-font"><span>STANDARD</span><span>POPULAR</span></div>
-                <div class="price-center">
-                    <div class="price-val">4500</div>
-                </div>
-                <div class="card-footer">
-                    <div class="details-row">
-                        <ul class="feature-list std-font" style="color:#94a3b8">
-                            <li>2 Protocols</li>
-                            <li>Unlimited Dev</li>
-                            <li>Backup Key</li>
-                            <li>No Speed Limit</li>
-                        </ul>
-                        <div class="data-wrap"><span class="data-val">120</span><span class="data-unit std-font" style="color:#3b82f6">GB</span></div>
-                    </div>
-                    <div class="secure-tag std-font" style="color:#475569"><div class="dot"></div>SECURE TUNNEL ACTIVE</div>
-                </div>
-            </div>
-
-            <!-- Card 3 (Putter) -->
-            <div class="card">
-                <div class="card-label std-font"><span>ULTRA</span><span>PREMIUM</span></div>
-                <div class="price-center">
-                    <div class="price-val">9000</div>
-                </div>
-                <div class="card-footer">
-                    <div class="details-row">
-                        <ul class="feature-list std-font">
-                            <li>2 Protocols</li>
-                            <li>Unlimited Dev</li>
-                            <li>Backup Key</li>
-                            <li>No Speed Limit</li>
-                        </ul>
-                        <div class="data-wrap"><span class="data-val">300</span><span class="data-unit std-font">GB</span></div>
-                    </div>
-                    <div class="secure-tag std-font"><div class="dot"></div>SECURE TUNNEL ACTIVE</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="dots-nav">
-            <div class="i-dot"></div>
-            <div class="i-dot active"></div>
-            <div class="i-dot"></div>
-        </div>
-
-        <div class="action-container">
-            <button class="buy-btn std-font">အခုပဲ ဝယ်ယူအသုံးပြုမည်</button>
-        </div>
-    </section>
-
-    <script>
-        const slider = document.getElementById('pSlider');
-        const dots = document.querySelectorAll('.i-dot');
-        
-        slider.addEventListener('scroll', () => {
-            const index = Math.round(slider.scrollLeft / (slider.scrollWidth - slider.clientWidth) * (dots.length - 1));
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-        });
-
-        window.onload = () => {
-            const cardWidth = slider.querySelector('.card').offsetWidth;
-            slider.scrollLeft = (cardWidth + 20) * 0.9; 
-        };
-    </script>
 </body>
 </html>
