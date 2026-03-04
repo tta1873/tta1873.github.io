@@ -127,14 +127,14 @@ main {
 /* Lock Image Position */
 .image-container {
     position: absolute;
-    right: -20px; /* ညာဘက်အစွန်းမှာ ကပ်ထားဖို့ */
-    bottom: 50px; /* အောက်ကနေ နည်းနည်း မြှင့်ထားဖို့ */
-    z-index: 1;
+    right: -20px;   /* ညာဘက်အစွန်းမှာ ကပ်ထားဖို့ */
+    top: 55%;       /* Screen ရဲ့ အလယ်နားမှာ ပေါ်စေဖို့ */
+    transform: translateY(-50%);
+    z-index: 10;
 }
 
 .lock-img {
-    width: 250px; /* ပုံအရွယ်အစားကို ဒီမှာ လိုသလို ညှိနိုင်ပါတယ် */
+    width: 280px;   /* ပုံအရွယ်အစားကို ဒီမှာ ညှိပါ */
     height: auto;
-    filter: drop-shadow(0 0 15px rgba(30, 78, 184, 0.4)); /* ပုံလေး လင်းနေအောင် */
-    transform: rotate(-5deg); /* နည်းနည်းလေး စောင်းထားရင် ပိုလှပါတယ် */
+    display: block;
 }
