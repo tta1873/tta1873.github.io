@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue Edge - Premium Pricing</title>
+    <title>Blue Edge - Fixed Premium Layout</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Heather Green font နှင့် အနီးစပ်ဆုံး Condensed font ကို အသုံးပြုထားသည် */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Bebas+Neue&display=swap');
 
         body {
@@ -18,16 +19,16 @@
         }
 
         .bg-glow {
-            background: radial-gradient(circle at top right, #1e4eb8 0%, #050a18 80%);
+            background: radial-gradient(circle at top right, #1e4eb8 0%, #050a18 85%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
         .container {
-            max-width: 480px;
+            max-width: 450px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -38,242 +39,278 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            padding-top: 10px;
         }
 
         .brand {
             font-weight: 900;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             letter-spacing: 0.5px;
         }
 
         .help-btn {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 7px 14px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 12px;
             border-radius: 20px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             display: flex;
             flex-direction: row-reverse;
             align-items: center;
-            gap: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            gap: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        .tg-icon { width: 16px; height: 16px; }
-
-        /* Hero */
+        /* Hero Section */
         .hero {
             position: relative;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+        }
+
+        .wifi-dot {
+            background: rgba(255, 255, 255, 0.1);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            margin-bottom: 12px;
+            color: #4a90ff;
         }
 
         .main-title {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             font-weight: 900;
             color: #4a90ff;
-            line-height: 0.9;
-            font-family: 'Inter', sans-serif;
+            line-height: 0.85;
+            margin: 10px 0;
         }
 
-        .hero-img {
+        .desc-text {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            line-height: 1.6;
+            max-width: 65%;
+            margin-bottom: 10px;
+        }
+
+        .hero-lock-img {
             position: absolute;
             right: -25px;
-            top: 110px;
-            width: 280px;
+            top: 120px;
+            width: 250px;
             z-index: 1;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
         }
 
-        /* Pricing Grid */
+        /* Pricing Grid - ၃ ခုလုံး ဖုန်းထဲ ဆန့်အောင်ညှိထားသည် */
         .pricing-grid {
             display: flex;
+            justify-content: center;
+            align-items: flex-end;
             gap: 6px;
             margin-top: auto;
-            padding-bottom: 25px;
+            padding-bottom: 20px;
             z-index: 10;
-            align-items: flex-end;
         }
 
         .card {
             background: #0f172a;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 15px 10px;
+            border-radius: 14px;
+            padding: 12px 8px;
             flex: 1;
+            min-width: 0;
             display: flex;
             flex-direction: column;
-            min-width: 0;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
         }
 
         .card.featured {
-            background: #1e40af;
-            border-color: #3b82f6;
-            transform: scale(1.06);
-            padding: 20px 12px;
+            background: linear-gradient(180deg, #1e40af 0%, #172554 100%);
+            border: 1px solid #3b82f6;
+            transform: scale(1.05);
+            padding: 16px 8px;
+            z-index: 15;
         }
 
-        .plan-info {
+        .card-top {
             display: flex;
             justify-content: space-between;
             font-size: 0.45rem;
             font-weight: bold;
-            color: #94a3b8;
-            margin-bottom: 4px;
+            color: #64748b;
             text-transform: uppercase;
+            margin-bottom: 4px;
         }
 
-        .featured .plan-info { color: #bfdbfe; }
+        .featured .card-top { color: #bfdbfe; }
 
-        .price-val {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 3.2rem;
-            line-height: 0.85;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
+        /* Heather Green Style (Condensed Heavy) */
+        .price-text {
+            font-family: 'Bebas Neue', cursive; /* Heather Green နှင့် အနီးစပ်ဆုံး */
+            font-size: 3.5rem;
+            line-height: 0.8;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+            color: white;
         }
 
-        .featured .price-val { font-size: 4.2rem; }
+        .featured .price-text {
+            font-size: 4.8rem;
+        }
 
-        /* Card Bottom Section */
-        .card-bottom {
+        /* Footer Section inside Card */
+        .card-footer {
             display: flex;
             justify-content: space-between;
             align-items: flex-end; /* အောက်ခြေတန်းညှိရန် */
             margin-top: auto;
         }
 
-        .features {
+        .feature-list {
             list-style: none;
             padding: 0;
             margin: 0;
-            font-size: 0.4rem;
+            font-size: 0.38rem;
             color: #94a3b8;
             line-height: 1.8;
         }
 
-        .featured .features { color: #dbeafe; }
+        .featured .feature-list { color: #dbeafe; }
 
-        .features li::before {
+        .feature-list li::before {
             content: "•";
-            margin-right: 4px;
+            margin-right: 3px;
         }
 
-        /* Data Number & GB Styling (As per screenshot) */
-        .data-container {
+        .data-box {
             display: flex;
             align-items: flex-end;
             line-height: 0.8;
+            text-align: right;
         }
 
-        .data-num {
+        .data-val {
             font-family: 'Bebas Neue', cursive;
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: white;
         }
 
-        .featured .data-num { font-size: 2.8rem; }
-
-        .gb-label {
-            font-size: 0.5rem;
-            font-weight: bold;
-            margin-left: 2px;
-            padding-bottom: 2px;
-            color: #94a3b8;
+        .featured .data-val {
+            font-size: 3rem;
         }
 
-        .featured .gb-label { color: #dbeafe; }
+        .gb-unit {
+            font-size: 0.45rem;
+            font-weight: bold;
+            color: #64748b;
+            margin-left: 1px;
+            padding-bottom: 2px;
+        }
 
+        .featured .gb-unit { color: #bfdbfe; }
+
+        /* Small screen optimization */
         @media (max-width: 360px) {
-            .price-val { font-size: 2.8rem; }
-            .featured .price-val { font-size: 3.5rem; }
-            .data-num { font-size: 1.8rem; }
+            .price-text { font-size: 2.8rem; }
+            .featured .price-text { font-size: 3.8rem; }
+            .data-val { font-size: 1.8rem; }
+            .featured .data-val { font-size: 2.4rem; }
         }
     </style>
 </head>
 <body class="bg-glow">
 
     <div class="container">
+        <!-- Header -->
         <header>
             <div class="brand">BLUE EDGE</div>
             <div class="help-btn">
-                <img src="https://raw.githubusercontent.com/tta1873/tta1873.github.io/refs/heads/main/icons8-telegram-96.png" alt="TG" class="tg-icon">
+                <img src="https://raw.githubusercontent.com/tta1873/tta1873.github.io/refs/heads/main/icons8-telegram-96.png" alt="TG" class="tg-icon" width="16" height="16">
                 <span>အကူအညီရယူရန်</span>
             </div>
         </header>
 
+        <!-- Hero Section -->
         <div class="hero">
-            <div class="text-blue-400 mb-2">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+            <div class="wifi-dot">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
             </div>
-            <div class="text-2xl font-light">တစ်နေရာတည်းမှာ</div>
-            <h1 class="main-title">PROTOCOL <span class="text-base text-gray-500 font-normal">အကုန်ရ</span></h1>
+            <div class="text-xl font-light">တစ်နေရာတည်းမှာ</div>
+            <h1 class="main-title">PROTOCOL <span class="text-sm font-normal text-gray-500">အကုန်ရ</span></h1>
             
-            <p class="text-sm text-gray-400 mt-6 max-w-[65%] leading-relaxed">
+            <div class="desc-text">
                 Hysteria 2 နှင့် Vless (Reality) တို့ကို Plan တိုင်းမှာ စိတ်ကြိုက်ပြောင်းလဲအသုံးပြုနိုင်ပါတယ်။
-            </p>
+                Device Limit မရှိတဲ့အပြင် Backup Key ပါဝင်ပြီးသားဖြစ်ပါတယ်။
+            </div>
 
-            <img src="20260304_084442.png" alt="Lock" class="hero-img">
+            <!-- Lock Image from your assets -->
+            <img src="20260304_084442.png" alt="Lock" class="hero-lock-img">
         </div>
 
+        <!-- Pricing Grid -->
         <div class="pricing-grid">
             <!-- Basic Plan -->
             <div class="card">
-                <div class="plan-info">
+                <div class="card-top">
                     <span>Basic Plan</span>
                     <span>Monthly</span>
                 </div>
-                <div class="price-val">1500</div>
-                <div class="card-bottom">
-                    <ul class="features">
+                <div class="price-text">1500</div>
+                <div class="card-footer">
+                    <ul class="feature-list">
                         <li>2 Protocols Supported</li>
                         <li>Unlimited Devices</li>
                         <li>Backup Key Included</li>
                         <li>No Speed Limit</li>
                     </ul>
-                    <div class="data-container">
-                        <div class="data-num">30</div>
-                        <div class="gb-label">GB</div>
+                    <div class="data-box">
+                        <span class="data-val">30</span>
+                        <span class="gb-unit">GB</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Standard Plan -->
+            <!-- Standard Plan (Featured) -->
             <div class="card featured">
-                <div class="plan-info">
+                <div class="card-top">
                     <span>Standard Plan</span>
                     <span>Monthly</span>
                 </div>
-                <div class="price-val">4500</div>
-                <div class="card-bottom">
-                    <ul class="features">
+                <div class="price-text">4500</div>
+                <div class="card-footer">
+                    <ul class="feature-list">
                         <li>2 Protocols Supported</li>
                         <li>Unlimited Devices</li>
                         <li>Backup Key Included</li>
                         <li>No Speed Limit</li>
                     </ul>
-                    <div class="data-container">
-                        <div class="data-num">120</div>
-                        <div class="gb-label">GB</div>
+                    <div class="data-box">
+                        <span class="data-val">120</span>
+                        <span class="gb-unit">GB</span>
                     </div>
                 </div>
             </div>
 
             <!-- Ultra Plan -->
             <div class="card">
-                <div class="plan-info">
+                <div class="card-top">
                     <span>Ultra Plan</span>
                     <span>Monthly</span>
                 </div>
-                <div class="price-val">9000</div>
-                <div class="card-bottom">
-                    <ul class="features">
+                <div class="price-text">9000</div>
+                <div class="card-footer">
+                    <ul class="feature-list">
                         <li>2 Protocols Supported</li>
                         <li>Unlimited Devices</li>
                         <li>Backup Key Included</li>
                         <li>No Speed Limit</li>
                     </ul>
-                    <div class="data-container">
-                        <div class="data-num">300</div>
-                        <div class="gb-label">GB</div>
+                    <div class="data-box">
+                        <span class="data-val">300</span>
+                        <span class="gb-unit">GB</span>
                     </div>
                 </div>
             </div>
