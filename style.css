@@ -127,13 +127,14 @@ main {
 /* Lock Image Position */
 .image-container {
     position: absolute;
-    right: -60px;
-    top: 150px;
+    right: -20px; /* ညာဘက်အစွန်းမှာ ကပ်ထားဖို့ */
+    bottom: 50px; /* အောက်ကနေ နည်းနည်း မြှင့်ထားဖို့ */
     z-index: 1;
 }
 
 .lock-img {
-    width: 280px;
-    transform: rotate(-10deg);
-    filter: drop-shadow(0 0 20px rgba(74, 144, 255, 0.5));
+    width: 250px; /* ပုံအရွယ်အစားကို ဒီမှာ လိုသလို ညှိနိုင်ပါတယ် */
+    height: auto;
+    filter: drop-shadow(0 0 15px rgba(30, 78, 184, 0.4)); /* ပုံလေး လင်းနေအောင် */
+    transform: rotate(-5deg); /* နည်းနည်းလေး စောင်းထားရင် ပိုလှပါတယ် */
 }
