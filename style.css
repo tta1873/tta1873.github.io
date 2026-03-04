@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #050a18; /* Dark Background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: white;
+}
+
+.card {
+    width: 400px;
+    height: 700px;
+    background: radial-gradient(circle at top right, #1e4eb8 0%, #050a18 60%);
+    padding: 30px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Header Section */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.help-btn {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+/* Main Content */
+main {
+    margin-top: 100px;
+    position: relative;
+}
+
+.wifi-icon {
+    background: rgba(255, 255, 255, 0.15);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.sub-title {
+    font-weight: 300;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.main-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #4a90ff;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.main-title small {
+    font-size: 1rem;
+    color: #ccc;
+    font-weight: normal;
+}
+
+.description {
+    font-size: 0.9rem;
+    color: #b0b0b0;
+    line-height: 1.6;
+}
+
+.description p {
+    margin-bottom: 15px;
+}
+
+.thunder-icon {
+    background: rgba(255, 255, 255, 0.1);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+/* Lock Image Position */
+.image-container {
+    position: absolute;
+    right: -60px;
+    top: 150px;
+    z-index: 1;
+}
+
+.lock-img {
+    width: 280px;
+    transform: rotate(-10deg);
+    filter: drop-shadow(0 0 20px rgba(74, 144, 255, 0.5));
+}
