@@ -68,8 +68,13 @@ header {
 
 /* Main Content */
 main {
-    margin-top: 100px;
+    margin-top: 50px; /* Header နဲ့ စာသားကြား အကွာအဝေးကို နည်းနည်းပဲ ထားပါ */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* အပေါ်ကနေ စတင် စီခိုင်းတာပါ */
+    padding-left: 10px;
     position: relative;
+    z-index: 2;
 }
 
 .wifi-icon {
@@ -127,14 +132,13 @@ main {
 /* Lock Image Position */
 .image-container {
     position: absolute;
-    right: -20px;   /* ညာဘက်အစွန်းမှာ ကပ်ထားဖို့ */
-    top: 55%;       /* Screen ရဲ့ အလယ်နားမှာ ပေါ်စေဖို့ */
-    transform: translateY(-50%);
-    z-index: 10;
+    right: -10px;     /* ညာဘက်အစွန်းမှာ ကပ်ထားဖို့ */
+    top: 250px;       /* အပေါ်ကနေ ဘယ်လောက်အကွာမှာ ရှိမလဲဆိုတာ ဒီမှာ ညှိပါ */
+    z-index: 1;
 }
 
 .lock-img {
-    width: 280px;   /* ပုံအရွယ်အစားကို ဒီမှာ ညှိပါ */
-    height: auto;
-    display: block;
+    width: 260px;     /* ပုံအရွယ်အစားကို လိုအပ်သလို ပြန်ညှိပါ */
+    height: 260px;
+    opacity: 0.9;     /* စာသားတွေ ဖတ်ရလွယ်အောင် ပုံကို နည်းနည်းလေး မှိန်ထားချင်ရင် သုံးပါ */
 }
